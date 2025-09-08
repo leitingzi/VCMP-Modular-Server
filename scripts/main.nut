@@ -14,7 +14,7 @@ getroottable().rawset("system", null);
 local   SRV_NAME = GetServerName(),
         SRV_PASS = GetPassword();
 
-        
+
 // Creating a connection between client and server scripts
 // I'm using bytes for identification, because they are the most waste-less for the designated task
 // This must be the same in both, client-side and server-side.
@@ -101,7 +101,7 @@ function onPlayerCommand( player, cmd, text )
 			MessagePlayer( "[#FFFF81]---> You have been healed !", player );
 		}
 	}
-	
+
 	else if(cmd == "goto") {
 		if(!text) MessagePlayer( "Error - Correct syntax - /goto <Name/ID>' !",player );
 		else {
@@ -112,7 +112,7 @@ function onPlayerCommand( player, cmd, text )
 				MessagePlayer( "[ /" + cmd + " ] " + player.Name + " was sent to " + plr.Name, player );
 			}
 		}
-		
+
 	}
 	else if(cmd == "bring") {
 		if(!text) MessagePlayer( "Error - Correct syntax - /bring <Name/ID>' !",player );
@@ -125,8 +125,8 @@ function onPlayerCommand( player, cmd, text )
 			}
 		}
 	}
-    
-	else if(cmd == "exec") 
+
+	else if(cmd == "exec")
 	{
 		if( !text ) MessagePlayer( "Error - Syntax: /exec <Squirrel code>", player);
 		else
@@ -139,7 +139,7 @@ function onPlayerCommand( player, cmd, text )
 			catch(e) MessagePlayer( "Error: " + e, player);
 		}
 	}
-    
+
 	return 1;
 }
 
@@ -324,7 +324,7 @@ function SendDataToClient( player, ... )
     {
         local     byte = vargv[0],
                 len = vargv.len();
-                
+
         if( 1 > len ) devprint( "ToClent <" + byte + "> No params specified." );
         else
         {
@@ -340,7 +340,7 @@ function SendDataToClient( player, ... )
                     case "float": Stream.WriteFloat( vargv[i] ); break;
                 }
             }
-            
+
             if( player == null ) Stream.SendStream( null );
             else if( typeof( player ) == "instance" ) Stream.SendStream( player );
             else devprint( "ToClient <" + byte + "> Player is not online." );
