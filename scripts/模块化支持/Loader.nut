@@ -24,7 +24,7 @@ function removeModule(moduleName) {
 		moduleArray.remove(index);
 	}
 
-	println("移除模块: " + moduleName);
+	print("移除模块: " + moduleName);
 }
 
 function injectModule(moduleName) {
@@ -36,15 +36,11 @@ function injectModule(moduleName) {
 	local script = compilestring("moduleArray.append(\"" + moduleName + "\");");
 	script();
 
-	println("注入模块: " + moduleName);
+	print("注入模块: " + moduleName);
 }
 
 function lowerFirst(name) {
 	return name.slice(0, 1).tolower() + name.slice(1, name.len());
-}
-
-function println(msg) {
-	print(msg + "\n");
 }
 
 class EventModule {
@@ -102,7 +98,19 @@ function moduleEvent(func, ...) {
 	return returnValue;
 }
 
-system("nutLoader.bat");
+print(__FILE__);
+
+local data = split(__FILE__, "/");
+data[data.len() - 1] = "nutLoader.bat";
+local newData = @".\";
+for (local i = 0; i < data.len(); i++) {
+	newData += data[i]
+	if(i + 1 < data.len()) {
+		newData += @"\";
+	}
+}
+
+system(newData);
 
 function ReadTextFromFile(path) {
 	local f = file(path, "rb"), s = "";
@@ -113,7 +121,19 @@ function ReadTextFromFile(path) {
 	return s;
 }
 
-local text = ReadTextFromFile("nutFiles.nut");
+local data = split(__FILE__, "/");
+data[data.len() - 1] = "nutFiles.nut";
+local newData = "";
+for (local i = 0; i < data.len(); i++) {
+	newData += data[i]
+	if(i + 1 < data.len()) {
+		newData += "/";
+	}
+}
+
+local text = ReadTextFromFile(newData);
+
+print(text);
 
 function stringToArray(string) {
 	local array = split(string, "\n");
@@ -123,16 +143,27 @@ function stringToArray(string) {
 local array = stringToArray(text);
 foreach(value in array) {
 	if (strip(value) != "" && value.tolower().find("loader") == null) {
-		dofile(strip(value));
+
+		local data = split(__FILE__, "/");
+		data[data.len() - 1] = strip(value);
+		local newData = "";
+		for (local i = 0; i < data.len(); i++) {
+			newData += data[i]
+			if(i + 1 < data.len()) {
+				newData += "/";
+			}
+		}
+
+		dofile(newData);
 	}
 }
 
-remove("nutFiles.nut");
+// remove("nutFiles.nut");
 
 injectModule("A");
 local a = get("A");
-println(moduleArray[0]);
-println(moduleArray.len());
+print(moduleArray[0]);
+print(moduleArray.len());
 
 
 function test() {
@@ -142,8 +173,8 @@ function test() {
 moduleEvent(test);
 
 removeModule("A");
-println(moduleArray.len());
+print(moduleArray.len());
 
 function ClientInputReturn(editbox, text) {
-	
+
 }

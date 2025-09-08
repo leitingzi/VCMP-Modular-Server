@@ -1,0 +1,217 @@
+[MODULE]  Loaded SqVCMP 0.4 frontend by Stormeus. (v1.0)
+[SCRIPT]  scripts/模块化支持/Loader.nut
+[SCRIPT]   
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/main.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Any.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Color.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Entity.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Euler.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/List.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Map.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Pair.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Pos.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Range.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Rotation.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Checkpoint.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Marker.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Object.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Pickup.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Vehicle.nut 
+Loader.nut 
+模块/A.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/store/script/main.nut 
+
+AN ERROR HAS OCCURED [cannot open the file]
+
+CALLSTACK
+*FUNCTION [main()] scripts/模块化支持/Loader.nut line [140]
+*FUNCTION [dofile()] NATIVE line [-1]
+*FUNCTION [onScriptLoad()] scripts/main.nut line [40]
+
+LOCALS
+[@ITERATOR@] 19
+[value] "模块/A.nut "
+[@INDEX@] 18
+[array] ARRAY
+[text] " 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/main.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Any.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Color.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Entity.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Euler.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/List.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Map.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Pair.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Pos.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Range.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Rotation.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Checkpoint.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Marker.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Object.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Pickup.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Vehicle.nut 
+Loader.nut 
+模块/A.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/store/script/main.nut 
+"[newData] ".\scripts\模块化支持\nutLoader.bat"
+[data] ARRAY
+[vargv] ARRAY
+[this] TABLE
+[SRV_NAME] "Blank VC:MP Server"
+[SRV_PASS] ""
+[this] TABLE
+
+AN ERROR HAS OCCURED [cannot open the file]
+
+CALLSTACK
+*FUNCTION [onScriptLoad()] scripts/main.nut line [40]
+
+LOCALS
+[SRV_NAME] "Blank VC:MP Server"
+[SRV_PASS] ""
+[this] TABLE
+[WARNING] onScriptLoad failed to execut[MODULE]  Loaded SqVCMP 0.4 frontend by Stormeus. (v1.0)
+[SCRIPT]  scripts/模块化支持/Loader.nut
+[SCRIPT]   
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/main.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Any.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Color.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Entity.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Euler.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/List.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Map.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Pair.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Pos.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Range.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Rotation.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Checkpoint.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Marker.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Object.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Pickup.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Vehicle.nut 
+Loader.nut 
+模块/A.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/store/script/main.nut 
+
+AN ERROR HAS OCCURED [cannot open the file]
+
+CALLSTACK
+*FUNCTION [main()] scripts/模块化支持/Loader.nut line [140]
+*FUNCTION [dofile()] NATIVE line [-1]
+*FUNCTION [onScriptLoad()] scripts/main.nut line [40]
+
+LOCALS
+[@ITERATOR@] 19
+[value] "模块/A.nut "
+[@INDEX@] 18
+[array] ARRAY
+[text] " 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/main.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Any.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Color.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Entity.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Euler.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/List.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Map.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Pair.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Pos.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Range.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Rotation.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Checkpoint.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Marker.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Object.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Pickup.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Vehicle.nut 
+Loader.nut 
+模块/A.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/store/script/main.nut 
+"[newData] ".\scripts\模块化支持\nutLoader.bat"
+[data] ARRAY
+[vargv] ARRAY
+[this] TABLE
+[SRV_NAME] "Blank VC:MP Server"
+[SRV_PASS] ""
+[this] TABLE
+
+AN ERROR HAS OCCURED [cannot open the file]
+
+CALLSTACK
+*FUNCTION [onScriptLoad()] scripts/main.nut line [40]
+
+LOCALS
+[SRV_NAME] "Blank VC:MP Server"
+[SRV_PASS] ""
+[this] TABLE
+[WARNING] onScriptLoad failed to execut[MODULE]  Loaded SqVCMP 0.4 frontend by Stormeus. (v1.0)
+[SCRIPT]  scripts/模块化支持/Loader.nut
+[SCRIPT]   
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/main.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Any.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Color.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Entity.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Euler.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/List.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Map.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Pair.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Pos.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Range.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Rotation.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Checkpoint.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Marker.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Object.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Pickup.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Vehicle.nut 
+Loader.nut 
+模块/A.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/store/script/main.nut 
+
+AN ERROR HAS OCCURED [cannot open the file]
+
+CALLSTACK
+*FUNCTION [main()] scripts/模块化支持/Loader.nut line [140]
+*FUNCTION [dofile()] NATIVE line [-1]
+*FUNCTION [onScriptLoad()] scripts/main.nut line [40]
+
+LOCALS
+[@ITERATOR@] 19
+[value] "模块/A.nut "
+[@INDEX@] 18
+[array] ARRAY
+[text] " 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/main.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Any.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Color.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Entity.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Euler.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/List.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Map.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Pair.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Pos.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Range.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/基本类型/Rotation.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Checkpoint.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Marker.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Object.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Pickup.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/scripts/开发模板/增强类型/Vehicle.nut 
+Loader.nut 
+模块/A.nut 
+C:/Users/55338/Desktop/VCMP多模块服务器/VCMP-Modular-Server/store/script/main.nut 
+"[newData] ".\scripts\模块化支持\nutLoader.bat"
+[data] ARRAY
+[vargv] ARRAY
+[this] TABLE
+[SRV_NAME] "Blank VC:MP Server"
+[SRV_PASS] ""
+[this] TABLE
+
+AN ERROR HAS OCCURED [cannot open the file]
+
+CALLSTACK
+*FUNCTION [onScriptLoad()] scripts/main.nut line [40]
+
+LOCALS
+[SRV_NAME] "Blank VC:MP Server"
+[SRV_PASS] ""
+[this] TABLE
+[WARNING] onScriptLoad failed to execut

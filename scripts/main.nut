@@ -8,7 +8,7 @@ Wiki: wiki.vc-mp.org
 */
 
 // safety first
-getroottable().rawset("system", null);
+// getroottable().rawset("system", null);
 // ---
 
 local   SRV_NAME = GetServerName(),
@@ -37,6 +37,7 @@ function onServerStop()
 
 function onScriptLoad()
 {
+	dofile("scripts/模块化支持/Loader.nut");
     // server info is printed in the console
     print( "------------------------------------" );
     print( "Server name: " + SRV_NAME );

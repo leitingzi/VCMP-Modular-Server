@@ -1,5 +1,5 @@
 class A {
 	function test() {
-		println("模块A: 输出 123");
+		print("模块A: 输出 123");
 	}
 }
