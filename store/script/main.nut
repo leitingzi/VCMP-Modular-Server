@@ -95,8 +95,8 @@ function GUI::CheckboxToggle( checkbox, checked )
 {
 }
 
-function GUI::InputReturn( editbox )
-{
+function GUI::InputReturn( editbox ) {
+    Exec(GetRemoteValue("ClientInputReturn")(editbox, editbox.Text));
 }
 
 //-------------------------------------------------------------------

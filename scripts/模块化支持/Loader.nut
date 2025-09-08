@@ -139,7 +139,11 @@ function test() {
 
 }
 
-moduleEvent(test)
+moduleEvent(test);
 
 removeModule("A");
 println(moduleArray.len());
+
+function ClientInputReturn(editbox, text) {
+	
+}
