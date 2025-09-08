@@ -1,3 +1,6 @@
+
+// 模块注入
+
 moduleArray <- [];
 
 function getModule(moduleName) {
@@ -39,78 +42,25 @@ function injectModule(moduleName) {
 	print("注入模块: " + moduleName);
 }
 
+// 工具函数
+
 function lowerFirst(name) {
 	return name.slice(0, 1).tolower() + name.slice(1, name.len());
 }
 
-class EventModule {
-	function onScriptLoad() {}
-	function onScriptUnload() {}
-	function onServerStart() {}
-	function onServerStop() {}
+function getFilePath(basePath, fileName, startPath = "", addPath = "/") {
+    local pathParts = split(basePath, "/");
+    pathParts[pathParts.len() - 1] = fileName;
 
-	function onPlayerJoin(player) {}
-	function onPlayerPart(player, reason) {}
-	function onPlayerRequestClass(player, classID, team, skin) {}
-	function onPlayerRequestSpawn(player) {}
-	function onPlayerSpawn(player) {}
-	function onPlayerDeath(player, reason) {}
-	function onPlayerKill(player, killer, reason, bodypart) {}
-	function onPlayerChat(player, text) {}
-	function onPlayerCommand(player, cmd, text) {}
+    local newPath = startPath;
+    for (local i = 0; i < pathParts.len(); i++) {
+        newPath += pathParts[i];
+        if (i + 1 < pathParts.len()) {
+            newPath += addPath;
+        }
+    }
+    return newPath;
 }
-
-function moduleEvent(func, ...) {
-	local funcInfo = func.getinfos();
-	local funcName = funcInfo.name;
-	local returnDefaultValue = true;
-	local returnValue = returnDefaultValue;
-
-	for (local i = 0; i < moduleArray.len(); i++) {
-		local module = moduleArray[i];
-		local moduleClass = get(module);
-
-		if (moduleClass.rawin(funcName)) {
-			local moduleFuncInfo = moduleClass[funcName].getinfos();
-			local parameters = moduleFuncInfo.parameters;
-			local defparams = moduleFuncInfo.defparams;
-
-			local varr = [moduleClass];
-			for (local i = 0; i < vargv.len(); i++) {
-				varr.append(vargv[i]);
-			}
-
-			if (vargv.len() < parameters.len()) {
-				local len = parameters.len() - vargv.len();
-				for (local i = len; i < defparams.len(); i++) {
-					varr.append(defparams[i]);
-				}
-			}
-
-			returnValue = moduleClass[funcName].acall(varr);
-			if (returnValue == null) {
-				returnValue = returnDefaultValue;
-			}
-		}
-		break;
-	}
-
-	return returnValue;
-}
-
-print(__FILE__);
-
-local data = split(__FILE__, "/");
-data[data.len() - 1] = "nutLoader.bat";
-local newData = @".\";
-for (local i = 0; i < data.len(); i++) {
-	newData += data[i]
-	if(i + 1 < data.len()) {
-		newData += @"\";
-	}
-}
-
-system(newData);
 
 function ReadTextFromFile(path) {
 	local f = file(path, "rb"), s = "";
@@ -121,50 +71,40 @@ function ReadTextFromFile(path) {
 	return s;
 }
 
-local data = split(__FILE__, "/");
-data[data.len() - 1] = "nutFiles.nut";
-local newData = "";
-for (local i = 0; i < data.len(); i++) {
-	newData += data[i]
-	if(i + 1 < data.len()) {
-		newData += "/";
+function loadNutFiles(basePath) {
+	local a = split(basePath, "/");
+	if(a.len() <= 2) {
+		basePath = basePath += "/nutFiles.nut";
 	}
-}
 
-local text = ReadTextFromFile(newData);
+	local readPath = getFilePath(basePath, "nutFiles.nut");
+	local text = ReadTextFromFile(readPath);
+	local array = split(text, "\n");
 
-print(text);
-
-function stringToArray(string) {
-	local array = split(string, "\n");
-	return array;
-}
-
-local array = stringToArray(text);
-foreach(value in array) {
-	if (strip(value) != "" && value.tolower().find("loader") == null) {
-
-		local data = split(__FILE__, "/");
-		data[data.len() - 1] = strip(value);
-		local newData = "";
-		for (local i = 0; i < data.len(); i++) {
-			newData += data[i]
-			if(i + 1 < data.len()) {
-				newData += "/";
-			}
+	foreach(value in array) {
+		if (strip(value) != "" && value.tolower().find("loader") == null) {
+			local path = getFilePath(basePath, strip(value));
+			print("加载: " + path);
+			dofile(path);
 		}
-
-		dofile(newData);
 	}
 }
 
-// remove("nutFiles.nut");
+// 加载除了Loader.nut 以外所有nut文件
+
+loadNutFiles(__FILE__); //模块化支持
+loadNutFiles("scripts/开发模板");
+
+print("");
+
+
+// 测试模块
 
 injectModule("A");
-local a = get("A");
-print(moduleArray[0]);
-print(moduleArray.len());
+print("模块A 是否存在: " + hasModule("A"));
 
+local a = get("A");
+a.test()
 
 function test() {
 
@@ -173,8 +113,4 @@ function test() {
 moduleEvent(test);
 
 removeModule("A");
-print(moduleArray.len());
-
-function ClientInputReturn(editbox, text) {
-
-}
+print("模块A 是否存在: " + hasModule("A"));
