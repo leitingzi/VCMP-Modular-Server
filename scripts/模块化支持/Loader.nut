@@ -36,3 +36,37 @@ function lowerFirst(name) {
 function println(msg) {
 	print(msg + "\n");
 }
+
+system("nutLoader.bat");
+
+function ReadTextFromFile(path) {
+	local f = file(path, "rb"), s = "";
+	while (!f.eos()) {
+		s += format(@"%c", f.readn('b'));
+	}
+	f.close();
+	return s;
+}
+
+local text = ReadTextFromFile("nutFiles.nut");
+
+function stringToArray(string) {
+	local array = split(string, "\n");
+	return array;
+}
+
+println(1);
+
+
+local array = stringToArray(text);
+foreach (value in array) {
+	if(strip(value) != "" && value.tolower().find("loader") == null) {
+		dofile(strip(value));
+	}
+}
+
+remove("nutFiles.nut");
+
+injectModule("A");
+local a = get("A");
+a.test();
