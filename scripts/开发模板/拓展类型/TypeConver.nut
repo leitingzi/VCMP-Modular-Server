@@ -55,3 +55,20 @@ class TypeConver {
 		}
 	}
 }
+
+function splitForValue(string, valueSplit = "_") {
+	local arr = split(string, valueSplit);
+	local newarr = [];
+	for (local i = 0; i < arr.len(); i++) {
+		newarr.append(strip(arr[i]));
+	}
+	return newarr;
+}
+
+function getValueAndType(string, typeSplit = ":", valueSplit = "_") {
+	local arr = split(string, typeSplit);
+	return {
+		valueArray = splitForValue(arr[0], valueSplit),
+		type = arr[1]
+	};
+}

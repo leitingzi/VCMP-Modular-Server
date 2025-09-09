@@ -70,13 +70,30 @@ function ReadTextFromFile(path) {
 	return s;
 }
 
+function FileIsExist(path) {
+	try {
+		local f = file(path, "rb");
+		f.close();
+	} catch (exception) {
+		return false;
+	}
+	return true;
+}
+
 function loadNutFiles(basePath) {
-	basePath = "scripts/" + basePath + "/nutFiles.nut"
-	local data = ReadTextFromFile(getFilePath(basePath, "nutFiles.nut"));
+	if (basePath != "模块化支持") {
+		local loaderPath = "scripts/" + basePath + "/Loader.nut"
+		if (FileIsExist(loaderPath)) {
+			dofile(loaderPath);
+		}
+	}
+
+	basePath = "scripts/" + basePath + "/nutFiles.txt"
+	local data = ReadTextFromFile(getFilePath(basePath, "nutFiles.txt"));
 	local array = split(data, "\n");
 
 	foreach(value in array) {
-		if (strip(value) != "" && value.find("Loader.nut") == null) {
+		if (strip(value) != "") {
 			local path = getFilePath(basePath, strip(value));
 			print("加载: " + path);
 			try {
@@ -84,18 +101,14 @@ function loadNutFiles(basePath) {
 			} catch (exception) {
 				print(exception);
 			}
-
 		}
 	}
 }
 
-// 加载除了Loader.nut 以外所有nut文件
+// 加载模块中的nut文件
 
 loadNutFiles("开发模板");
 loadNutFiles("模块化支持");
-
-
-print("");
 
 
 // 测试模块

@@ -42,23 +42,3 @@ class When {
 function when(value) {
 	return When(value);
 }
-
-local x = 55;
-local result = when(x)
-	.is(1, function() {
-		return "1";
-	})
-	.is(5, function() {
-		return "5";
-	})
-	.is(10, function() {
-		return "10";
-	})
-	.is(55, function() {
-		return "55";
-	})
-	.otherwise(function() {
-		return "?";
-	});
-
-print(result);
