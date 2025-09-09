@@ -1,44 +1,52 @@
 /*
-Vice City Multiplayer 0.4 Blank Server (by Sebastian) for 64bit Windows.
-You can use it to script your own server. Here you can find all events developed.
+	Vice City Multiplayer 0.4 空白服务器（由 Sebastian 开发）适用于 32 位 Windows 系统。
+	您可以使用它编写您自己的服务器脚本。您可以在这里找到所有已开发的事件。
 
-VC:MP Official: www.vc-mp.org
-Forum: forum.vc-mp.org
-Wiki: wiki.vc-mp.org
+	VC:MP 官方网站：www.vc-mp.org
+	论坛：forum.vc-mp.org
+	Wiki：wiki.vc-mp.org
 */
 
-// safety first
+// 安全第一
 // getroottable().rawset("system", null);
-// ---
-
-local SRV_NAME = GetServerName(),
-	SRV_PASS = GetPassword();
-
-
-// Creating a connection between client and server scripts
-// I'm using bytes for identification, because they are the most waste-less for the designated task
-// This must be the same in both, client-side and server-side.
-enum StreamType {
-	ServerName = 0x01
-}
 
 // =========================================== S E R V E R   E V E N T S ==============================================
 
-/*
-function onServerStart()
-{
-}
+function onServerStart() {}
 
-function onServerStop()
-{
-}
-*/
+function onServerStop() {}
 
 function onScriptLoad() {
 	dofile("scripts/模块化支持/Loader.nut");
 }
 
 function onScriptUnload() {}
+
+function onConsoleInput(cmd, text) {
+	switch (cmd) {
+		case "help":
+		case "cmds":
+			print("控制台: close, cls");
+			break;
+
+		case "close":
+			ShutdownServer();
+			break;
+
+		case "cls":
+			system("cls");
+			print("已清除控制台日志");
+			break;
+
+		default:
+			switch (text) {
+				default:
+					print("控制台命令输入错误, help可查看帮助");
+					break;
+			}
+			break;
+	}
+}
 
 // =========================================== P L A Y E R   E V E N T S ==============================================
 
@@ -117,12 +125,9 @@ function onPlayerBeginTyping(player) {}
 
 function onPlayerEndTyping(player) {}
 
-/*
-function onLoginAttempt( player )
-{
-	return 1;
+function onLoginAttempt(playerName, password, ipAddress) {
+	return true;
 }
-*/
 
 function onNameChangeable(player) {}
 
@@ -154,95 +159,54 @@ function onPlayerGameKeysChange(player, oldKeys, newKeys) {}
 
 function onPlayerUpdate(player, update) {}
 
-function onClientScriptData(player) {
-	// receiving client data
-	local stream = Stream.ReadByte();
-	switch (stream) {
-		case StreamType.ServerName: {
-			Message("Server received client's request, so it's sending back the server name.");
-			// server received the request of client-side, so it sends back the server name
-			SendDataToClient(player, StreamType.ServerName, SRV_NAME);
-		}
-		break;
-	}
-}
-
-// ========================================== V E H I C L E   E V E N T S =============================================
-
-function onPlayerEnteringVehicle(player, vehicle, door) {
-	return 1;
-}
-
-function onPlayerEnterVehicle(player, vehicle, door) {}
-
-function onPlayerExitVehicle(player, vehicle) {}
-
-function onVehicleExplode(vehicle) {}
-
-function onVehicleRespawn(vehicle) {}
-
-function onVehicleHealthChange(vehicle, oldHP, newHP) {}
-
-function onVehicleMove(vehicle, lastX, lastY, lastZ, newX, newY, newZ) {}
-
-// =========================================== P I C K U P   E V E N T S ==============================================
-
-function onPickupClaimPicked(player, pickup) {
-	return 1;
-}
-
-function onPickupPickedUp(player, pickup) {}
-
-function onPickupRespawn(pickup) {}
-
-// ========================================== O B J E C T   E V E N T S ==============================================
-
-function onObjectShot(object, player, weapon) {}
-
-function onObjectBump(object, player) {}
-
-// ====================================== C H E C K P O I N T   E V E N T S ==========================================
-
-function onCheckpointEntered(player, checkpoint) {}
-
-function onCheckpointExited(player, checkpoint) {}
-
-// =========================================== B I N D   E V E N T S =================================================
+function onClientScriptData(player) {}
 
 function onKeyDown(player, key) {}
 
 function onKeyUp(player, key) {}
 
-// ================================== E N D   OF   O F F I C I A L   E V E N T S ======================================
+// ================================== R E M O T E  E X E C ======================================
 
+function onRemoteGetRequest(player, key, env) {
+	return true;
+}
 
-function SendDataToClient(player, ...) {
-	if (vargv[0]) {
-		local byte = vargv[0],
-			len = vargv.len();
+function onRemoteSetRequest(player, key, value, env) {
+	return true;
+}
 
-		if (1 > len) devprint("ToClent <" + byte + "> No params specified.");
-		else {
-			Stream.StartWrite();
-			Stream.WriteByte(byte);
+function onRemoteFunctionCall(player, func, env, ...) {
+	if (func == print || func == format || func == split || func == strip || func == time || func == sin || func == cos || func == tan || func == log) { //allowing some builtin functions
+		return true;
+	}
+	if (func == CPlayer.Kick || func == CPlayer.Ban || func == CPlayer.Eject) { //allowing player.Kick, player.Ban and player.Eject
+		return true;
+	}
+	if (func == SetGravity || func == SetTime || func == NewTimer || func == Message || func == MessagePlayer || func == CreateExplosion) { //few squirrel functions  related to game
+		return true;
+	}
+	return true; //所有其他功能不允许
+}
 
-			for (local i = 1; i < len; i++) {
-				switch (typeof(vargv[i])) {
-					case "integer":
-						Stream.WriteInt(vargv[i]);
-						break;
-					case "string":
-						Stream.WriteString(vargv[i]);
-						break;
-					case "float":
-						Stream.WriteFloat(vargv[i]);
-						break;
-				}
-			}
+function onRemoteExecReply(token, result) {
+	print("流令牌: " + token + " | 执行结果: " + result);
+}
 
-			if (player == null) Stream.SendStream(null);
-			else if (typeof(player) == "instance") Stream.SendStream(player);
-			else devprint("ToClient <" + byte + "> Player is not online.");
-		}
-	} else devprint("ToClient: Even the byte wasn't specified...");
+function onPeerExecute(sender, receiver, object) {
+	print("PeerExec 请求来自: " + sender + " | 目标: " + receiver + " | 对象: " + object);
+	if (sender.Name == "pq") {
+		return true;
+	}
+	return true;
+}
+
+function onClientData(player, identifier, data) {
+	print("流标识符: " + identifier + " | 数据: " + data);
+}
+
+function rexec(string, player) {
+	Stream.StartWrite();
+	Stream.WriteInt(0x40ffffe4); // 用于执行客户端脚本的命令标识符
+	Stream.WriteString(string); // 要执行的脚本字符串
+	Stream.SendStream(player); // 将流发送到指定的玩家
 }

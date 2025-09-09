@@ -7,6 +7,7 @@ function getModule(moduleName) {
 	return root[lowerFirst(moduleName)];
 }
 
+// 同getModule
 function get(moduleName) {
 	return getModule(moduleName);
 }
@@ -105,25 +106,35 @@ function loadNutFiles(basePath) {
 	}
 }
 
+
+// 定义模块列表
+local myModule = [
+	"开发模板", "模块化支持"
+];
+
 // 加载模块中的nut文件
+foreach (value in myModule) {
+	loadNutFiles(value);
+}
 
-loadNutFiles("开发模板");
-loadNutFiles("模块化支持");
 
 
-// 测试模块
+// 模块测试代码
 
+// 注入模块
 injectModule("A");
 print("模块A 是否存在: " + hasModule("A"));
 
-local a = get("A");
-a.test()
+// 执行模块函数
+local a = get("A"); //获取注入的模块
+a.test();
 
+// 测试模块事件
 function test() {
 
 }
-
 moduleEvent(test);
 
+// 移除模块
 removeModule("A");
 print("模块A 是否存在: " + hasModule("A"));

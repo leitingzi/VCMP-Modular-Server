@@ -1,2 +1,5 @@
 nutFiles.txt
 *.log
+server64.exe
+server_log.txt
+announce.log
