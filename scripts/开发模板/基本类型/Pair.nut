@@ -55,7 +55,7 @@ class Pair extends Any {
 		if (e.type == Type) {
 			local valueType = e.valueArray[2];
 			local key = e.valueArray[1];
-			local value = TypeConversion.Conver(valueType, e.valueArray[0]);
+			local value = TypeConver.Conver(valueType, e.valueArray[0]);
 			return Pair(key, value);
 		} else {
 			return null;
@@ -63,7 +63,7 @@ class Pair extends Any {
 	}
 
 	function getSaveString() {
-		return TypeConversion.getSaveString(value) + "*" + key + "*" + typeof value + "&" + Type;
+		return TypeConver.getSaveString(value) + "*" + key + "*" + typeof value + "&" + Type;
 	}
 
 	function create(table) {

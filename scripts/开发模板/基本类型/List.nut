@@ -34,7 +34,7 @@ class List extends Any {
 			local list = List();
 
 			for (local i = 0; i < valueArray.len(); i++) {
-				local value = TypeConversion.Conver(valueType, valueArray[i]);
+				local value = TypeConver.Conver(valueType, valueArray[i]);
 				list.add(value);
 			}
 			return list;
@@ -46,7 +46,7 @@ class List extends Any {
 	function getSaveString() {
 		local data = "";
 		for (local i = 0; i < entity.len(); i++) {
-			data += TypeConversion.getSaveString(entity[i]) + (i + 1 < entity.len() ? "#" : "");
+			data += TypeConver.getSaveString(entity[i]) + (i + 1 < entity.len() ? "#" : "");
 		}
 		return data + "!" + getSameType() + "$" + Type;
 	}

@@ -158,21 +158,6 @@ class Map extends Any {
 		return newMap;
 	}
 
-	static function fromSaveString(string, f = @(v) v) {
-		local arr = split(string, "&"), map = Map();
-		foreach (v in arr) {
-			local pair = Pair.fromSaveString(v, f);
-			map.add(pair);
-		}
-		return map;
-	}
-
-	function getSaveString(f = @(v) v) {
-		local data = "";
-		forEach(@(pair) data += pair.getSaveString(f) + "&");
-		return data;
-	}
-
 	function _tostring() {
 		return list.tostring();
 	}
