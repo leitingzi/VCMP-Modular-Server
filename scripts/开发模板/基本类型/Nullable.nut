@@ -6,12 +6,12 @@ class Nullable {
 	}
 
 	function _get(key) {
-		return ::NullableSafeGet(this, key);
+		return::NullableSafeGet(this, key);
 	}
 
 	function _call(...) {
 		local arr = [::getroottable(), this].extend(vargv);
-		return ::NullableSafeCall.acall(arr);
+		return::NullableSafeCall.acall(arr);
 	}
 
 	function get() {
@@ -35,6 +35,28 @@ class Nullable {
 			}
 		}
 		return::Nullable(null);
+	}
+
+	function _tostring() {
+		return "Nullable(" + value + ")";
+	}
+}
+
+function NullableSafeGet(obj, key) {
+	if (obj.value != null) {
+		return Nullable(obj.value[key]);
+	} else {
+		return Nullable(obj.value);
+	}
+}
+
+function NullableSafeCall(...) {
+	local f = vargv[0].get();
+	if (f == null) {
+		return Nullable(f);
+	} else {
+		local v = f.acall(vargv.slice(1, vargv.len()));
+		return Nullable(v.value);
 	}
 }
 
@@ -75,40 +97,20 @@ function println(msg) {
 	print(msg + "\n");
 }
 
-function NullableSafeGet(obj, key) {
-	if (obj.value != null) {
-		return Nullable(obj.value[key]);
-	} else {
-		return Nullable(obj.value);
-	}
-}
-
-function NullableSafeCall(...) {
-	local f = vargv[0].get();
-	if(f == null) {
-		return Nullable(f);
-	} else {
-		local v = f.acall(vargv.slice(1, vargv.len()));
-		return Nullable(v.value);
-	}
-}
-
 function nullable(value) {
 	return Nullable(value);
 }
 
 local user = nullable({
-	name = "Bob",
 	address = {
-		city = "New Work \n"
-	},
-	getFullName = function () {
-		return this.name;
+		city = {
+			name = {
+				x = "x",
+				y = "y"
+			}
+		}
 	}
 });
 
-local city = user.safeGet("address").safeGet("city").get();
-print("City: " + city);
-
-local city = user.getFullName().get();
-print(" Full Name: " + city);
+local x = user.address.city.name.x.get();
+print(x)
