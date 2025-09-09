@@ -13,6 +13,10 @@ class EventModule {
 	function onPlayerKill(player, killer, reason, bodypart) {}
 	function onPlayerChat(player, text) {}
 	function onPlayerCommand(player, cmd, text) {}
+	function onKeyDown(player, key) {}
+	function onKeyUp(player, key) {}
+
+	function onClientData(player, identifier, data) {}
 }
 
 function moduleEvent(func, ...) {

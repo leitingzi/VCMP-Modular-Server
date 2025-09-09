@@ -4,7 +4,8 @@ moduleArray <- [];
 
 function getModule(moduleName) {
 	local root = getroottable();
-	return root[lowerFirst(moduleName)];
+	local e = root[lowerFirst(moduleName)];
+	return e;
 }
 
 // 同getModule
@@ -113,7 +114,7 @@ local myModule = [
 ];
 
 // 加载模块中的nut文件
-foreach (value in myModule) {
+foreach(value in myModule) {
 	loadNutFiles(value);
 }
 
