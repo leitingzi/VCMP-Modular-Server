@@ -1,5 +1,3 @@
-keyProcessMap <- Map();
-keyProcessTimer <- NewTimer("KeyProcess", 100, 0);
 
 function KeyProcess() {
 	keyProcessMap.forEach(function(v) {
@@ -45,3 +43,6 @@ function KeyDown(playerID, key) {
 			break;
 	}
 }
+
+keyProcessMap <- Map();
+keyProcessTimer <- NewTimer("KeyProcess", 100, 0);

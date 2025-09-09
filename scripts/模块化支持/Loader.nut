@@ -3,9 +3,24 @@
 moduleArray <- [];
 
 function getModule(moduleName) {
-	local root = getroottable();
-	local e = root[lowerFirst(moduleName)];
-	return e;
+	local root = getroottable(), e = null;
+	if (root.rawin(lowerFirst(moduleName))) {
+		e = root.rawget(lowerFirst(moduleName));
+	} else if (root.rawin("factory" + moduleName)) {
+		e = root.rawget("factory" + moduleName);
+	}
+
+	if (e == null) {
+		return e;
+	}
+
+	if (typeof(e) == "Factory") {
+		local script = compilestring("FactoryGet <- function() { return " + moduleName + "() };");
+		script();
+		return FactoryGet();
+	} else {
+		return e;
+	}
 }
 
 // 同getModule
@@ -41,6 +56,13 @@ function injectModule(moduleName) {
 	script();
 
 	print("注入模块: " + moduleName);
+}
+
+function factoryModule(moduleName) {
+	local key = lowerFirst(moduleName);
+
+	local script = compilestring("factory" + moduleName + " <- Factory(\"" + moduleName + "\");");
+	script();
 }
 
 // 工具函数
@@ -91,7 +113,8 @@ function loadNutFiles(basePath) {
 	}
 
 	basePath = "scripts/" + basePath + "/nutFiles.txt"
-	local data = ReadTextFromFile(getFilePath(basePath, "nutFiles.txt"));
+	local filePath = getFilePath(basePath, "nutFiles.txt")
+	local data = ReadTextFromFile(filePath);
 	local array = split(data, "\n");
 
 	foreach(value in array) {
@@ -139,3 +162,23 @@ moduleEvent(test);
 // 移除模块
 removeModule("A");
 print("模块A 是否存在: " + hasModule("A"));
+
+
+class B {
+	test = 123;
+
+	function log() {
+		print(test);
+	}
+}
+
+factoryModule("B");
+
+local b1 = getModule("B");
+b1.test = 4;
+
+local b2 = getModule("B");
+b2.test = 5;
+
+b1.log();
+b2.log();
