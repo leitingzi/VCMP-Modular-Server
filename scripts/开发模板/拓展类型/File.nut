@@ -1,4 +1,4 @@
-class FileUtil {
+class File {
 	static function read(path) {
 		local f = file(path, "rb"), s = "";
 		while (!f.eos()) {

@@ -28,6 +28,7 @@ class Nullable {
 	}
 
 	function safeGet(propertyName) {
+		::println(propertyName);
 		if (value != null) {
 			local value = value[propertyName];
 			return CheckValue(value);
@@ -49,7 +50,7 @@ class Nullable {
 	}
 
 	function _tostring() {
-		return "" + value;
+		return "Nullable(" + value + ")";
 	}
 }
 
@@ -109,46 +110,52 @@ function println(msg) {
 	print(msg + "\n");
 }
 
-function nullable(value) {
+function nullable(value = null) {
 	return Nullable(value);
 }
 
+// local user = nullable({
+// 	address = {
+// 		city = {
+// 			name = {
+// 				x = "x123"
+// 			},
+// 			getNameX = function() {
+// 				return {
+// 					x = "123",
+// 					y = {
+// 						y2 = "y2123"
+// 					}
+// 				};
+// 			}
+// 		}
+// 	}
+// });
+
+// local x = user.safeGet("address").safeGet("city").safeGet("name").safeGet("x");
+// println(x);
+
+// local x = user.address.city.safeCall("getNameX").safeGet("y").safeGet("y2");
+// println(x);
+
+// local x = user.address.city.name.x;
+// println(x);
+
+// local x = user.address.city.getNameX().y;
+// println(x);
+
 local user = nullable({
-	address = {
-		city = {
-			name = {
-				x = "x123",
-				y = "y123"
-			},
-			getNameX = function() {
-				return this.name.x;
-			}
-		}
-	}
+	address = null
 });
 
 local x = user.safeGet("address").safeGet("city").safeGet("name").safeGet("x");
 println(x);
 
-local x = user.address.city.safeCall("getNameX");
+local x = user.address.city.safeCall("getNameX").safeGet("y").safeGet("y2");
 println(x);
 
 local x = user.address.city.name.x;
 println(x);
 
-local x = user.address.city.getNameX();
-println(x);
-
-local user = nullable(null);
-
-local x = user.safeGet("address").safeGet("city").safeGet("name").safeGet("x");
-println(x);
-
-local x = user.address.city.safeCall("getNameX");
-println(x);
-
-local x = user.address.city.name.x;
-println(x);
-
-local x = user.address.city.getNameX();
+local x = user.address.city.getNameX().y.y2;
 println(x);

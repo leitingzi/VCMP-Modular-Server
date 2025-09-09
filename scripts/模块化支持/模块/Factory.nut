@@ -9,17 +9,6 @@ class Factory {
 	}
 }
 
-class Single {
-	moduleName = null;
-	constructor(moduleName) {
-		this.moduleName = moduleName;
-	}
-
-	function _typeof() {
-		return "Single";
-	}
-}
-
 function injectModule(moduleName) {
 	local key = lowerFirst(moduleName);
 

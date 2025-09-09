@@ -1,4 +1,4 @@
-class DateUtil {
+class Date {
 	d = null;
 	sec = null;
 	min = null;
