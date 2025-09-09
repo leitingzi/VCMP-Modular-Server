@@ -18,9 +18,19 @@ class Nullable {
 		return value;
 	}
 
+	static function CheckValue(value) {
+		local vtype = typeof(value);
+		if (vtype == "integer" || vtype == "string" || vtype == "float" || vtype == "bool") {
+			return value;
+		} else {
+			return::Nullable(value);
+		}
+	}
+
 	function safeGet(propertyName) {
 		if (value != null) {
-			return::Nullable(value[propertyName]);
+			local value = value[propertyName];
+			return CheckValue(value);
 		} else {
 			return::Nullable(null);
 		}
@@ -31,32 +41,34 @@ class Nullable {
 			local method = value[methodName];
 			if (typeof(method) == "function") {
 				local arr = [value].extend(vargv);
-				return::Nullable(method.acall(arr));
+				local value = method.acall(arr);
+				return CheckValue(value);
 			}
 		}
 		return::Nullable(null);
 	}
 
 	function _tostring() {
-		return "Nullable(" + value + ")";
+		return "" + value;
 	}
 }
 
 function NullableSafeGet(obj, key) {
 	if (obj.value != null) {
-		return Nullable(obj.value[key]);
+		local value = obj.value[key];
+		return Nullable.CheckValue(value);
 	} else {
-		return Nullable(obj.value);
+		return Nullable(null);
 	}
 }
 
 function NullableSafeCall(...) {
 	local f = vargv[0].get();
-	if (f == null) {
-		return Nullable(f);
+	if (f != null) {
+		local value = f.acall(vargv.slice(1, vargv.len()));
+		return Nullable.CheckValue(value);
 	} else {
-		local v = f.acall(vargv.slice(1, vargv.len()));
-		return Nullable(v.value);
+		return Nullable(null);
 	}
 }
 
@@ -105,12 +117,38 @@ local user = nullable({
 	address = {
 		city = {
 			name = {
-				x = "x",
-				y = "y"
+				x = "x123",
+				y = "y123"
+			},
+			getNameX = function() {
+				return this.name.x;
 			}
 		}
 	}
 });
 
-local x = user.address.city.name.x.get();
-print(x)
+local x = user.safeGet("address").safeGet("city").safeGet("name").safeGet("x");
+println(x);
+
+local x = user.address.city.safeCall("getNameX");
+println(x);
+
+local x = user.address.city.name.x;
+println(x);
+
+local x = user.address.city.getNameX();
+println(x);
+
+local user = nullable(null);
+
+local x = user.safeGet("address").safeGet("city").safeGet("name").safeGet("x");
+println(x);
+
+local x = user.address.city.safeCall("getNameX");
+println(x);
+
+local x = user.address.city.name.x;
+println(x);
+
+local x = user.address.city.getNameX();
+println(x);
