@@ -35,6 +35,22 @@ function radianToAngle(radian) {
 	return (radian + PI) * (180.0 / PI);
 }
 
+function max(a, b) {
+	if(a >= b) {
+		return a;
+	} else {
+		return b;
+	}
+}
+
+function min(a, b) {
+	if(a <= b) {
+		return a;
+	} else {
+		return b;
+	}
+}
+
 // ю╢вт kl
 function onCalQuaternion(x, y, z, w, pos) {
 	local a, b, c, d;

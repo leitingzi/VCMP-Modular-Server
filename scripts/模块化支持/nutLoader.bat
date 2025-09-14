@@ -1,34 +1,30 @@
 @echo off
-:: è®¾ç½®ç¼–ç ä¸ºGB2312ï¼?65001æ˜¯UTF-8ï¼?936æ˜¯GB2312ï¼?
+:: ÉèÖÃ±àÂëÎªGB2312
 chcp 936 >nul
 
 set "output_file=nutFiles.txt"
 setlocal enabledelayedexpansion
 
-:: èŽ·å–å½“å‰æ‰¹å?„ç†æ–‡ä»¶æ‰€åœ¨ç›®å½•çš„ç»å?¹è·¯å¾?
+:: »ñÈ¡µ±Ç°Åú´¦ÀíÎÄ¼þËùÔÚÄ¿Â¼µÄ¾ø¶ÔÂ·¾¶
 set "bat_dir=%~dp0"
 
-:: æ¸…ç©ºå¹¶åˆ›å»ºè¾“å‡ºæ–‡ä»¶ï¼ˆè‹¥å·²å­˜åœ¨åˆ™è?†ç›–ï¼?
+:: Çå¿Õ²¢´´½¨Êä³öÎÄ¼þ
 echo. > "%output_file%"
 
-:: æœç´¢å½“å‰ç›?å½•åŠå­ç›®å½•ä¸‹æ‰€æœ? .nut æ–‡ä»¶ï¼ŒæŽ’é™?nutFiles.txtå’Œåå­—ä¸­å¸¦æœ‰loaderçš„æ–‡ä»¶ï¼Œ
-:: å¹¶å°†ç›¸å?¹è·¯å¾„å†™å…?nutFiles.txtï¼ˆä½¿ç”?/åˆ†éš”ï¼?
-for /r %%i in (*.nut) do (
-    :: æ£€æŸ¥å½“å‰æ–‡ä»¶æ˜¯å¦ä¸ºnutFiles.txtæˆ–æ–‡ä»¶åä¸?åŒ…å«loader
-    if /i not "%%~nxi"=="nutFiles.txt" (
-        echo "%%~nxi" | findstr /i "loader" >nul
-        if errorlevel 1 (
-            :: èŽ·å–æ–‡ä»¶çš„ç»å¯¹è·¯å¾?
-            set "file_path=%%~fi"
-            
-            :: è®¡ç®—ç›¸å?¹è·¯å¾„ï¼ˆåŽ»é™¤æ‰¹å?„ç†æ–‡ä»¶ç›?å½•çš„å‰ç¼€ï¼?
-            set "rel_path=!file_path:%bat_dir%=!"
-            
-            :: å°†è·¯å¾„ä¸­çš„åæ–œæ \æ›¿æ¢ä¸ºæ–œæ?/
-            set "rel_path=!rel_path:\=/!"
-            
-            :: å†™å…¥ç›¸å?¹è·¯å¾„åˆ°è¾“å‡ºæ–‡ä»¶ï¼ˆä¸æ·»åŠ åŒå¼•å·ï¼‰
-            echo !rel_path! >> "%output_file%"
-        )
-    )
+:: ËÑË÷ËùÓÐ.nutÎÄ¼þ£¬°´´´½¨Ê±¼äÉýÐòÅÅÁÐ£¨ oldest first £©
+:: /tc °´´´½¨Ê±¼äÅÅÐò /o-d ½µÐò£¨×îÐÂÔÚÇ°£©£¬ÕâÀïÓÃ/tc /on°´ÉýÐò£¨ oldest first £©
+for /f "delims=" %%i in ('dir /s /b /tc /on "*.nut" ^| findstr /v /i "nutFiles.txt" ^| findstr /v /i "loader"') do (
+    :: »ñÈ¡ÎÄ¼þµÄ¾ø¶ÔÂ·¾¶
+    set "file_path=%%i"
+    
+    :: ¼ÆËãÏà¶ÔÂ·¾¶£¨È¥³ýÅú´¦ÀíÎÄ¼þÄ¿Â¼µÄÇ°×º£©
+    set "rel_path=!file_path:%bat_dir%=!"
+    
+    :: ½«Â·¾¶ÖÐµÄ·´Ð±¸Ü\Ìæ»»ÎªÐ±¸Ü/
+    set "rel_path=!rel_path:\=/!"
+    
+    :: Ð´ÈëÏà¶ÔÂ·¾¶µ½Êä³öÎÄ¼þ
+    echo !rel_path! >> "%output_file%"
 )
+
+endlocal

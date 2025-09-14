@@ -10,17 +10,27 @@
 // 安全第一
 // getroottable().rawset("system", null);
 
+
+
 // =========================================== S E R V E R   E V E N T S ==============================================
 
-function onServerStart() {}
+function onServerStart() {
+	moduleEvent(onServerStart);
+}
 
-function onServerStop() {}
+function onServerStop() {
+	moduleEvent(onServerStart);
+}
 
 function onScriptLoad() {
 	dofile("scripts/模块化支持/Loader.nut");
+
+	moduleEvent(onScriptLoad);
 }
 
-function onScriptUnload() {}
+function onScriptUnload() {
+	moduleEvent(onScriptUnload);
+}
 
 function onConsoleInput(cmd, text) {
 	switch (cmd) {
@@ -39,11 +49,7 @@ function onConsoleInput(cmd, text) {
 			break;
 
 		default:
-			switch (text) {
-				default:
-					print("控制台命令输入错误, help可查看帮助");
-					break;
-			}
+			moduleEvent(onConsoleInput, cmd, text);
 			break;
 	}
 }

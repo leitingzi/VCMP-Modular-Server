@@ -23,6 +23,22 @@ class When {
 		return this;
 	}
 
+	function isType(typeName, action) {
+		if (!found && typeof value == typeName) {
+			found = true;
+			result = action();
+		}
+		return this;
+	}
+
+	function isNull(action) {
+		if (!found && value == null) {
+			found = true;
+			result = action();
+		}
+		return this;
+	}
+
 	function inRange(min, max, action) {
 		if (!found && value >= min && value <= max) {
 			found = true;
@@ -53,11 +69,16 @@ function when(value) {
 
 local x = 65;
 local result = when(x)
-	.is(100, @() "Max")
-	.inRange(0, 35, @() "0~35")
-	.inRange(35, 70, @() "35~70")
-	.match(@(v) v * 2 > 150 && v < 80, @() "75~80")
-	.otherwise(@() ">80");
+	.is(100, @()
+		"Max")
+	.inRange(0, 35, @()
+		"0~35")
+	.inRange(35, 70, @()
+		"35~70")
+	.match(@(v) v * 2 > 150 && v < 80, @()
+		"75~80")
+	.otherwise(@()
+		">80");
 
 print(result);
 

@@ -117,6 +117,8 @@ function loadNutFiles(basePath) {
 	local data = ReadTextFromFile(filePath);
 	local array = split(data, "\n");
 
+	local errorPath = [];
+
 	foreach(value in array) {
 		if (strip(value) != "") {
 			local path = getFilePath(basePath, strip(value));
@@ -124,8 +126,19 @@ function loadNutFiles(basePath) {
 			try {
 				dofile(path);
 			} catch (exception) {
+				errorPath.append(path);
 				print(exception);
 			}
+		}
+	}
+
+	// 首次加载失败的文件 会重新加载
+	foreach(value in errorPath) {
+		try {
+			print("重新加载: " + value);
+			dofile(value);
+		} catch (exception) {
+			print(exception);
 		}
 	}
 }
@@ -136,12 +149,18 @@ local myModule = [
 	"开发模板", "模块化支持"
 ];
 
-// 加载模块中的nut文件
+// 加载模块中的nut文件，加载中首次报错是正常现象
 foreach(value in myModule) {
 	loadNutFiles(value);
 }
 
+local injectSingles = [
+	"ConsoleInput",
+]
 
+foreach(value in injectSingles) {
+	injectModule(value);
+}
 
 // 模块测试代码
 
@@ -172,12 +191,13 @@ class B {
 	}
 }
 
+// 注入模块
 factoryModule("B");
 
-local b1 = getModule("B");
+local b1 = get("B");
 b1.test = 4;
 
-local b2 = getModule("B");
+local b2 = get("B");
 b2.test = 5;
 
 b1.log();

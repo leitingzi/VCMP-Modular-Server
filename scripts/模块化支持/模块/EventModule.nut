@@ -17,6 +17,8 @@ class EventModule {
 	function onKeyUp(player, key) {}
 
 	function onClientData(player, identifier, data) {}
+
+	function onConsoleInput(cmd, text) {}
 }
 
 function moduleEvent(func, ...) {

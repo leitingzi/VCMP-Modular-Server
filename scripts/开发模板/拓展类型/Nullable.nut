@@ -20,12 +20,13 @@ class Nullable {
 	}
 
 	static function CheckValue(value) {
-		local vtype = typeof(value);
-		if (vtype == "integer" || vtype == "string" || vtype == "float" || vtype == "bool") {
-			return value;
-		} else {
-			return::Nullable(value);
-		}
+		return ::Nullable(value);
+		// local vtype = typeof(value);
+		// if (vtype == "integer" || vtype == "string" || vtype == "float" || vtype == "bool") {
+		// 	return value;
+		// } else {
+		// 	return::Nullable(value);
+		// }
 	}
 
 	function safeGet(propertyName) {
@@ -53,6 +54,71 @@ class Nullable {
 	function _tostring() {
 		return "Nullable(" + (value == null ? "null" : value) + ")";
 	}
+
+	function isNull() {
+        return value == null;
+    }
+
+	function isNotNull() {
+        return value != null;
+    }
+
+	// 如果值为空则返回默认值，否则返回当前值
+    function orElse(defaultValue) {
+        if (isNull()) {
+            return defaultValue;
+        }
+        return value;
+    }
+
+	// 如果值为空则返回另一个Nullable，否则返回当前实例
+    function or(otherNullable) {
+        if (isNull()) {
+            return otherNullable;
+        }
+        return this;
+    }
+
+	// 如果值不为空则应用映射函数，否则返回空的Nullable
+    function map(mapper) {
+        if (isNotNull()) {
+            return Nullable(mapper(value));
+        }
+        return Nullable(null);
+    }
+
+	// 如果值不为空则应用映射函数（返回Nullable），否则返回空的Nullable
+    function flatMap(mapper) {
+        if (isNotNull()) {
+            local result = mapper(value);
+            return result instanceof "Nullable" ? result : Nullable(result);
+        }
+        return Nullable(null);
+    }
+
+	// 如果值不为空且满足条件则返回当前实例，否则返回空
+    function filter(predicate) {
+        if (isNotNull() && predicate(value)) {
+            return this;
+        }
+        return Nullable(null);
+    }
+
+	// 如果值不为空则执行消费者函数，返回当前实例
+    function ifPresent(consumer) {
+        if (isNotNull()) {
+            consumer(value);
+        }
+        return this;
+    }
+
+	// 如果值为空则执行 Runnable，返回当前实例
+	function ifNull(runnable) {
+        if (isNull()) {
+            runnable();
+        }
+        return this;
+    }
 }
 
 function NullableSafeGet(obj, key) {
@@ -102,7 +168,7 @@ print(x);
 local x = user.address.city.safeCall("getNameX").safeGet("y").safeGet("y2");
 print(x);
 
-local x = user.address.city.name.x;
+local x = user.address.city.name.x.ifPresent(print);
 print(x);
 
 local x = user.address.city.getNameX().y.y2;
