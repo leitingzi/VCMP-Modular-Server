@@ -343,4 +343,12 @@ class Entity extends Any {
 	function onCopy() {
 
 	}
+
+	function getId() {
+        return entity ? (Type == MarkerClass.Type ? entity : entity.ID) : null;
+    }
+
+	function isValid() {
+        return index != -1 && entity != null;
+    }
 }
