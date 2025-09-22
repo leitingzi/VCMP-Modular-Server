@@ -43,5 +43,12 @@ class File {
 		}
 		return true;
 	}
+
+	static function safeCreate(path) {
+		if(isExist(path)) {
+			return;
+		}
+		create(path);
+	}
 }
 
