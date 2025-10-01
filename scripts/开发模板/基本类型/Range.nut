@@ -8,7 +8,7 @@ class Range extends Any {
 			this.value1 = value1;
 			this.value2 = value2;
 		} else {
-			throw Type + "µÄ²ÎÊı±ØĞëÊÇÕûÊı»ò¸¡µãÊı";
+			throw Type + "çš„å‚æ•°å¿…é¡»æ˜¯æ•´æ•°æˆ–æµ®ç‚¹æ•°";
 		}
 	}
 
@@ -57,7 +57,7 @@ class Range extends Any {
 		return Range(newStart, newEnd);
 	}
 
-	// °´²½³¤µü´ú
+	// æŒ‰æ­¥é•¿è¿­ä»£
 	function forEach(count, f) {
 		local d = len().tofloat() / count.tofloat();
 		for (local i = 0; i < count; i++) {
@@ -73,17 +73,17 @@ class Range extends Any {
 		return arr;
 	}
 
-	// ¼ì²éµ±Ç°·¶Î§ÊÇ·ñÍêÈ«°üº¬ÁíÒ»¸ö·¶Î§
+	// æ£€æŸ¥å½“å‰èŒƒå›´æ˜¯å¦å®Œå…¨åŒ…å«å¦ä¸€ä¸ªèŒƒå›´
 	function containsRange(other) {
 		return value1 <= other.value1 && value2 >= other.value2;
 	}
 
-	// ¼ì²éÁ½¸ö·¶Î§ÊÇ·ñÓĞÖØµş
+	// æ£€æŸ¥ä¸¤ä¸ªèŒƒå›´æ˜¯å¦æœ‰é‡å 
 	function overlapsWith(other) {
 		return !(value2 < other.value1 || value1 > other.value2);
 	}
 
-	// ¼ÆËãÓëÁíÒ»¸ö·¶Î§µÄ½»¼¯
+	// è®¡ç®—ä¸å¦ä¸€ä¸ªèŒƒå›´çš„äº¤é›†
 	function intersection(other) {
 		if (!overlapsWith(other)) {
 			return null;
@@ -93,7 +93,7 @@ class Range extends Any {
 		return Range(newStart, newEnd);
 	}
 
-	// ¼ÆËãÓëÁíÒ»¸ö·¶Î§µÄºÏ²¢£¨Èç¹ûÖØµş£©
+	// è®¡ç®—ä¸å¦ä¸€ä¸ªèŒƒå›´çš„åˆå¹¶ï¼ˆå¦‚æœé‡å ï¼‰
     function union(other) {
         if (!overlapsWith(other)) {
 			return null;

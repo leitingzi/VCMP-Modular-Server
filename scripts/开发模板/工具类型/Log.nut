@@ -8,50 +8,50 @@ class Log {
 		::hprint(cWHITE + cBOLD, "\n");
 	}
 
-	static function e(msg, title = "´íÎó") {
+	static function e(msg, title = "é”™è¯¯") {
 		printTitle(cRED, title);
 		message(msg);
 
 		saveInFile("[" + title + "] " + msg);
 	}
 
-	static function w(msg, title = "¾¯¸æ") {
+	static function w(msg, title = "è­¦å‘Š") {
 		printTitle(cYELLOW, title);
 		message(msg);
 
 		saveInFile("[" + title + "] " + msg);
 	}
 
-	static function i(msg, title = "ÐÅÏ¢") {
+	static function i(msg, title = "ä¿¡æ¯") {
 		printTitle(cBLUE, title);
 		message(msg);
 
 		saveInFile("[" + title + "] " + msg);
 	}
 
-	static function s(msg, title = "³É¹¦") {
+	static function s(msg, title = "æˆåŠŸ") {
 		printTitle(cGREEN, title);
 		message(msg);
 
 		saveInFile("[" + title + "] " + msg);
 	}
 
-	static function t(msg, title = "µ÷ÊÔ") {
+	static function t(msg, title = "è°ƒè¯•") {
 		printTitle(cMAGENTA, title);
 		message(msg);
 
 		saveInFile("[" + title + "] " + msg);
 	}
 
-	static function r(msg, title = "¼ÇÂ¼") {
+	static function r(msg, title = "è®°å½•") {
 		printTitle(cWHITE, title);
 		message(msg);
 
 		saveInFile("[" + title + "] " + msg);
 	}
 
-	static function a(msg, title = "²Ù×÷") {
-		printTitle(cCYAN, "²Ù×÷");
+	static function a(msg, title = "æ“ä½œ") {
+		printTitle(cCYAN, "æ“ä½œ");
 		message(msg);
 
 		saveInFile("[" + title + "] " + msg);
@@ -72,15 +72,15 @@ class Log {
 	}
 
 	static function saveInFile(msg) {
-		local fileName = "·þÎñÆ÷ÈÕÖ¾.txt";
+		local fileName = "æœåŠ¡å™¨æ—¥å¿—.txt";
 		local d = Date();
 		FileUtil.addLine(fileName, "[" + d.getCurrentTime() + "] -> " + msg);
 	}
 }
 
 function Log::Print(msg) {
-	hprint(cCYAN + cBOLD, "[½Å±¾] ");
+	hprint(cCYAN + cBOLD, "[è„šæœ¬] ");
 	hprint(cWHITE + cBOLD, msg + "\n");
-	Log.saveInFile("[½Å±¾] " + msg);
+	Log.saveInFile("[è„šæœ¬] " + msg);
 }
 print <- Log.Print;

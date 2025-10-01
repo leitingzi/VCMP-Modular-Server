@@ -6,7 +6,7 @@ class Pair extends Any {
 
 	constructor(key, value = null) {
 		if (key == null) {
-			throw "Pair类型的Key不能为空";
+			throw "Pair绫诲瀷鐨凨ey涓嶈兘涓虹┖";
 		}
 
 		this.key = key;
@@ -39,7 +39,7 @@ class Pair extends Any {
 			break;
 		}
 		if (this.key == null) {
-			throw "Pair类型的Key不能为空";
+			throw "Pair绫诲瀷鐨凨ey涓嶈兘涓虹┖";
 		}
 		return this;
 	}

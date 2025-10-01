@@ -1,4 +1,4 @@
-// ģ��ע��
+// 模块注入
 
 moduleArray <- [];
 
@@ -23,7 +23,7 @@ function getModule(moduleName) {
 	}
 }
 
-// ͬgetModule
+// 同getModule
 function get(moduleName) {
 	return getModule(moduleName);
 }
@@ -43,7 +43,7 @@ function removeModule(moduleName) {
 		moduleArray.remove(index);
 	}
 
-	print("�Ƴ�ģ��: " + moduleName);
+	print("移除模块: " + moduleName);
 }
 
 function injectModule(moduleName) {
@@ -55,7 +55,7 @@ function injectModule(moduleName) {
 	local script = compilestring("moduleArray.append(\"" + moduleName + "\");");
 	script();
 
-	print("ע��ģ��: " + moduleName);
+	print("注入模块: " + moduleName);
 }
 
 function factoryModule(moduleName) {
@@ -65,7 +65,7 @@ function factoryModule(moduleName) {
 	script();
 }
 
-// ���ߺ���
+// 工具函数
 
 function lowerFirst(name) {
 	return name.slice(0, 1).tolower() + name.slice(1, name.len());
@@ -105,7 +105,7 @@ function FileIsExist(path) {
 }
 
 function loadNutFiles(basePath) {
-	if (basePath != "ģ�黯֧��") {
+	if (basePath != "模块化支持") {
 		local loaderPath = "scripts/" + basePath + "/Loader.nut"
 		if (FileIsExist(loaderPath)) {
 			dofile(loaderPath);
@@ -122,7 +122,7 @@ function loadNutFiles(basePath) {
 	foreach(value in array) {
 		if (strip(value) != "") {
 			local path = getFilePath(basePath, strip(value));
-			print("����: " + path);
+			print("加载: " + path);
 			try {
 				dofile(path);
 			} catch (exception) {
@@ -132,10 +132,10 @@ function loadNutFiles(basePath) {
 		}
 	}
 
-	// �״μ���ʧ�ܵ��ļ� �����¼���
+	// 首次加载失败的文件 会重新加载
 	foreach(value in errorPath) {
 		try {
-			print("���¼���: " + value);
+			print("重新加载: " + value);
 			dofile(value);
 		} catch (exception) {
 			print(exception);
@@ -144,12 +144,12 @@ function loadNutFiles(basePath) {
 }
 
 
-// ����ģ���б�
+// 定义模块列表
 local myModule = [
-	"����ģ��", "ģ�黯֧��"
+	"开发模板", "模块化支持"
 ];
 
-// ����ģ���е�nut�ļ����������״α�������������
+// 加载模块中的nut文件，加载中首次报错是正常现象
 foreach(value in myModule) {
 	loadNutFiles(value);
 }
@@ -162,25 +162,25 @@ foreach(value in injectSingles) {
 	injectModule(value);
 }
 
-// ģ����Դ���
+// 模块测试代码
 
-// ע��ģ��
+// 注入模块
 injectModule("A");
-print("ģ��A �Ƿ����: " + hasModule("A"));
+print("模块A 是否存在: " + hasModule("A"));
 
-// ִ��ģ�麯��
-local a = get("A"); //��ȡע���ģ��
+// 执行模块函数
+local a = get("A"); //获取注入的模块
 a.test();
 
-// ����ģ���¼�
+// 测试模块事件
 function test() {
 
 }
 moduleEvent(test);
 
-// �Ƴ�ģ��
+// 移除模块
 removeModule("A");
-print("ģ��A �Ƿ����: " + hasModule("A"));
+print("模块A 是否存在: " + hasModule("A"));
 
 
 class B {
@@ -191,7 +191,7 @@ class B {
 	}
 }
 
-// ע��ģ��
+// 注入模块
 factoryModule("B");
 
 local b1 = get("B");

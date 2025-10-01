@@ -1,5 +1,5 @@
 class A {
 	function test() {
-		print("Ä£¿éA: Êä³ö 123");
+		print("æ¨¡å—A: è¾“å‡º 123");
 	}
 }

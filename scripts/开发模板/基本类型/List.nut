@@ -8,7 +8,7 @@ class List extends Any {
 		size = entity.len();
 	}
 
-	// ´´½¨Ö¸¶¨´óĞ¡µÄÁĞ±í£¬Ê¹ÓÃÌá¹©µÄº¯ÊıÉú³ÉÔªËØ
+	// åˆ›å»ºæŒ‡å®šå¤§å°çš„åˆ—è¡¨ï¼Œä½¿ç”¨æä¾›çš„å‡½æ•°ç”Ÿæˆå…ƒç´ 
 	function create(size, f = @(v) v) {
 		entity = [];
 		for (local i = 0; i < size; i++) {
@@ -18,7 +18,7 @@ class List extends Any {
 		return this;
 	}
 
-	// ´ÓÊı×é´´½¨ÁĞ±í
+	// ä»æ•°ç»„åˆ›å»ºåˆ—è¡¨
 	function createFrom(arr) {
 		entity = [];
 		for (local i = 0; i < arr.len(); i++) {
@@ -57,34 +57,34 @@ class List extends Any {
 		return "[" + joinString() + "]";
 	}
 
-	// ÁĞ±íºÏ²¢£¨+ ÔËËã·û£©
+	// åˆ—è¡¨åˆå¹¶ï¼ˆ+ è¿ç®—ç¬¦ï¼‰
 	function _add(other) {
 		return addAll(other);
 	}
 
-	// ÁĞ±í²î¼¯£¨-ÔËËã·û£©
+	// åˆ—è¡¨å·®é›†ï¼ˆ-è¿ç®—ç¬¦ï¼‰
 	function _sub(other) {
 		return filter(@(v) !other.contain(v));
 	}
 
-	// ×ª»»ÎªÔ­ÉúÊı×é
+	// è½¬æ¢ä¸ºåŸç”Ÿæ•°ç»„
 	function toArray() {
 		local arr = [];
 		forEach(@(v) arr.append(v));
 		return arr;
 	}
 
-	// »ñÈ¡Ö¸¶¨Ë÷ÒıµÄÔªËØ
+	// è·å–æŒ‡å®šç´¢å¼•çš„å…ƒç´ 
 	function get(index = 0) {
 		return index < size ? entity[index] : null;
 	}
 
-	// »ñÈ¡×îºóÒ»¸öÔªËØ
+	// è·å–æœ€åä¸€ä¸ªå…ƒç´ 
 	function getTop() {
 		return get(size - 1);
 	}
 
-	// »ñÈ¡Ç°n¸öÔªËØ
+	// è·å–å‰nä¸ªå…ƒç´ 
 	function take(n) {
 		local result = List();
 		local count = n >= size ? size : n;
@@ -94,7 +94,7 @@ class List extends Any {
 		return result;
 	}
 
-	// »ñÈ¡Ö¸¶¨·¶Î§µÄÔªËØ
+	// è·å–æŒ‡å®šèŒƒå›´çš„å…ƒç´ 
 	function takeIn(n, m = null) {
 		if (m == null) {
 			m = size;
@@ -107,12 +107,12 @@ class List extends Any {
 		return result;
 	}
 
-	// ²éÕÒÔªËØµÄË÷Òı
+	// æŸ¥æ‰¾å…ƒç´ çš„ç´¢å¼•
 	function find(e) {
 		return findFrom(@(v) v == e);
 	}
 
-	// ¸ù¾İÌõ¼ş²éÕÒÔªËØË÷Òı
+	// æ ¹æ®æ¡ä»¶æŸ¥æ‰¾å…ƒç´ ç´¢å¼•
 	function findFrom(f) {
 		for (local i = 0; i < size; i++) {
 			if (f(entity[i])) {
@@ -122,7 +122,7 @@ class List extends Any {
 		return null;
 	}
 
-	// ²éÕÒÔªËØË÷Òı£¬Î´ÕÒµ½·µ»ØÄ¬ÈÏÖµ
+	// æŸ¥æ‰¾å…ƒç´ ç´¢å¼•ï¼Œæœªæ‰¾åˆ°è¿”å›é»˜è®¤å€¼
 	function findOrDefault(e, d) {
 		for (local i = 0; i < size; i++) {
 			if (entity[i] == e) {
@@ -132,7 +132,7 @@ class List extends Any {
 		return d;
 	}
 
-	// ¼ì²éÊÇ·ñ°üº¬ÔªËØ
+	// æ£€æŸ¥æ˜¯å¦åŒ…å«å…ƒç´ 
 	function contain(e) {
 		for (local i = 0; i < size; i++) {
 			if (entity[i] == e) {
@@ -142,12 +142,12 @@ class List extends Any {
 		return false;
 	}
 
-	// containµÄ±ğÃû
+	// containçš„åˆ«å
 	function has(e) {
 		return contain(e);
 	}
 
-	// »ñÈ¡È¥ÖØºóµÄÁĞ±í
+	// è·å–å»é‡åçš„åˆ—è¡¨
 	function distinct() {
 		local result = List();
 		forEach(function(v) {
@@ -158,31 +158,31 @@ class List extends Any {
 		return result;
 	}
 
-	// ÓëÁíÒ»¸öÁĞ±íµÄ²¢¼¯
+	// ä¸å¦ä¸€ä¸ªåˆ—è¡¨çš„å¹¶é›†
 	function union(otherList) {
 		return addAll(otherList).distinct();
 	}
 
-	// ÔÚÄ©Î²Ìí¼ÓÔªËØ
+	// åœ¨æœ«å°¾æ·»åŠ å…ƒç´ 
 	function add(e) {
 		addIn(size, e);
 	}
 
-	// ÔÚÖ¸¶¨Î»ÖÃÌí¼ÓÔªËØ
+	// åœ¨æŒ‡å®šä½ç½®æ·»åŠ å…ƒç´ 
 	function addIn(index, e) {
 		local insertIndex = index < 0 ? 0 : (index > size ? size : index);
 		entity.insert(insertIndex, e);
 		size = entity.len();
 	}
 
-	// Ìí¼Ó¶à¸öÔªËØ
+	// æ·»åŠ å¤šä¸ªå…ƒç´ 
 	function addWith(...) {
 		for (local i = 0; i < vargv.len(); i++) {
 			add(vargv[i]);
 		}
 	}
 
-	// Ìí¼ÓÁíÒ»¸öÁĞ±íµÄËùÓĞÔªËØ
+	// æ·»åŠ å¦ä¸€ä¸ªåˆ—è¡¨çš„æ‰€æœ‰å…ƒç´ 
 	function addAll(otherList) {
 		for (local i = 0; i < otherList.size; i++) {
 			add(otherList.get(i));
@@ -190,14 +190,14 @@ class List extends Any {
 		return this;
 	}
 
-	// ´ÓÔ­ÉúÊı×éÌí¼ÓÔªËØ
+	// ä»åŸç”Ÿæ•°ç»„æ·»åŠ å…ƒç´ 
 	function addWithArray(arr) {
 		for (local i = 0; i < arr.len(); i++) {
 			add(arr[i]);
 		}
 	}
 
-	// ÒÆ³ıÖ¸¶¨ÔªËØ£¨µÚÒ»¸öÆ¥ÅäÏî£©
+	// ç§»é™¤æŒ‡å®šå…ƒç´ ï¼ˆç¬¬ä¸€ä¸ªåŒ¹é…é¡¹ï¼‰
 	function remove(e) {
 		for (local i = 0; i < size; i++) {
 			if (entity[i] == e) {
@@ -209,12 +209,12 @@ class List extends Any {
 		return this;
 	}
 
-	// ÒÆ³ıËùÓĞÆ¥ÅäµÄÔªËØ
+	// ç§»é™¤æ‰€æœ‰åŒ¹é…çš„å…ƒç´ 
 	function removeAll(e) {
 		return removeFrom(@(v) v == e);
 	}
 
-	// ¸ù¾İÌõ¼şÒÆ³ıÔªËØ
+	// æ ¹æ®æ¡ä»¶ç§»é™¤å…ƒç´ 
 	function removeFrom(f) {
 		for (local i = size - 1; i >= 0; i--) {
 			if (f(entity[i])) {
@@ -224,7 +224,7 @@ class List extends Any {
 		return this;
 	}
 
-	// ÒÆ³ıÖ¸¶¨Ë÷ÒıµÄÔªËØ
+	// ç§»é™¤æŒ‡å®šç´¢å¼•çš„å…ƒç´ 
 	function removeIndex(index) {
 		if (index >= 0 && index < size) {
 			entity.remove(index);
@@ -234,59 +234,59 @@ class List extends Any {
 		return this;
 	}
 
-	// ·´×ªÁĞ±í
+	// åè½¬åˆ—è¡¨
 	function reverse() {
 		entity.reverse();
 		return this;
 	}
 
-	// ÅÅĞò£¨Ê¹ÓÃÄ¬ÈÏ±È½ÏÆ÷£©
+	// æ’åºï¼ˆä½¿ç”¨é»˜è®¤æ¯”è¾ƒå™¨ï¼‰
 	function sort() {
 		entity.sort();
 		return this;
 	}
 
-	// Ê¹ÓÃ×Ô¶¨Òå±È½ÏÆ÷ÅÅĞò
+	// ä½¿ç”¨è‡ªå®šä¹‰æ¯”è¾ƒå™¨æ’åº
 	function sortBy(f = @(a, b) a <=> b) {
 		entity.sort(f);
 		return this;
 	}
 
-	// Çå¿ÕÁĞ±í
+	// æ¸…ç©ºåˆ—è¡¨
 	function clear() {
 		entity.clear();
 		size = 0;
 	}
 
-	// ±éÀúËùÓĞÔªËØ
+	// éå†æ‰€æœ‰å…ƒç´ 
 	function forEach(f) {
 		for (local i = 0; i < size; i++) {
 			f(entity[i]);
 		}
 	}
 
-	// ´øË÷ÒıµÄ±éÀú
+	// å¸¦ç´¢å¼•çš„éå†
 	function forEachIndex(f) {
 		for (local i = 0; i < size; i++) {
 			f(i, entity[i]);
 		}
 	}
 
-	// ·´Ïò±éÀú
+	// åå‘éå†
 	function forEachReverse(f) {
 		for (local i = size - 1; i >= 0; i--) {
 			f(entity[i]);
 		}
 	}
 
-	// Ó³Éä×ª»»
+	// æ˜ å°„è½¬æ¢
 	function map(f) {
 		local newList = List();
 		forEach(@(v) newList.add(f(v)));
 		return newList;
 	}
 
-	// ¹ıÂËÔªËØ
+	// è¿‡æ»¤å…ƒç´ 
 	function filter(f) {
 		local newList = List();
 		forEach(function(v) {
@@ -297,12 +297,12 @@ class List extends Any {
 		return newList;
 	}
 
-	// ¹ıÂËµônullÔªËØ
+	// è¿‡æ»¤æ‰nullå…ƒç´ 
 	function filterNotNull() {
 		return filter(@(v) v != null);
 	}
 
-	// °´Ìõ¼ş²ğ·ÖÁĞ±í
+	// æŒ‰æ¡ä»¶æ‹†åˆ†åˆ—è¡¨
 	function match(f) {
 		local a = List(), b = List();
 		for (local i = 0; i < size; i++) {
@@ -318,7 +318,7 @@ class List extends Any {
 		};
 	}
 
-	// °´ÔªËØÀàĞÍ·Ö×é
+	// æŒ‰å…ƒç´ ç±»å‹åˆ†ç»„
 	function group() {
 		local table = {};
 		local f = function(v) {
@@ -332,7 +332,7 @@ class List extends Any {
 		return table;
 	}
 
-	// °´×Ô¶¨Òåº¯Êı·Ö×é
+	// æŒ‰è‡ªå®šä¹‰å‡½æ•°åˆ†ç»„
 	function groupFrom(func) {
 		local map = Map();
 		local f = function(v) {
@@ -346,7 +346,7 @@ class List extends Any {
 		return map;
 	}
 
-	// ¹éÔ¼²Ù×÷
+	// å½’çº¦æ“ä½œ
 	function reduce(initial, operation) {
 		local accumulator = initial;
 		for (local i = 0; i < size; i++) {
@@ -355,17 +355,17 @@ class List extends Any {
 		return accumulator;
 	}
 
-	// ¼ì²éÊÇ·ñÎª¿Õ
+	// æ£€æŸ¥æ˜¯å¦ä¸ºç©º
 	function isEmpty() {
 		return size == 0;
 	}
 
-	// ¼ì²éÊÇ·ñËùÓĞÔªËØ¶¼Îªnull
+	// æ£€æŸ¥æ˜¯å¦æ‰€æœ‰å…ƒç´ éƒ½ä¸ºnull
 	function isBlank() {
 		return all(@(v) v == null);
 	}
 
-	// ¼ì²éËùÓĞÔªËØÊÇ·ñÎªÏàÍ¬ÀàĞÍ
+	// æ£€æŸ¥æ‰€æœ‰å…ƒç´ æ˜¯å¦ä¸ºç›¸åŒç±»å‹
 	function isSameType() {
 		if (isEmpty()) {
 			return true;
@@ -374,12 +374,12 @@ class List extends Any {
 		return all(@(v) typeof v == firstType);
 	}
 
-	// »ñÈ¡ËùÓĞÔªËØµÄ¹«¹²ÀàĞÍ£¨Èç¹ûÒ»ÖÂ£©
+	// è·å–æ‰€æœ‰å…ƒç´ çš„å…¬å…±ç±»å‹ï¼ˆå¦‚æœä¸€è‡´ï¼‰
 	function getSameType() {
 		return isSameType() ? typeof get(0) : null;
 	}
 
-	// ¼ì²éÊÇ·ñÓĞÔªËØÂú×ãÌõ¼ş
+	// æ£€æŸ¥æ˜¯å¦æœ‰å…ƒç´ æ»¡è¶³æ¡ä»¶
 	function any(predicate = null) {
 		if (predicate == null) {
 			return isEmpty();
@@ -387,7 +387,7 @@ class List extends Any {
 		return findFrom(predicate) != null
 	}
 
-	 // ¼ì²éÊÇ·ñËùÓĞÔªËØ¶¼Âú×ãÌõ¼ş
+	 // æ£€æŸ¥æ˜¯å¦æ‰€æœ‰å…ƒç´ éƒ½æ»¡è¶³æ¡ä»¶
 	function all(predicate) {
 		for (local i = 0; i < size; i++) {
 			if (!predicate(entity[i])) {
@@ -397,12 +397,12 @@ class List extends Any {
 		return true;
 	}
 
-	// Á¬½ÓÔªËØÎª×Ö·û´®
+	// è¿æ¥å…ƒç´ ä¸ºå­—ç¬¦ä¸²
 	function joinString(string = ", ") {
 		return joinStringFor(separator);
 	}
 
-	// Ê¹ÓÃ×Ô¶¨Òå×ª»»º¯ÊıÁ¬½ÓÔªËØÎª×Ö·û´®
+	// ä½¿ç”¨è‡ªå®šä¹‰è½¬æ¢å‡½æ•°è¿æ¥å…ƒç´ ä¸ºå­—ç¬¦ä¸²
 	function joinStringFor(string = ", ", f = @(v) v.tostring()) {
 		local data = "";
 		local f = @(i, v) data += i < size - 1 ? f(v) + string : f(v);
@@ -410,7 +410,7 @@ class List extends Any {
 		return data;
 	}
 
-	// ÓëÁíÒ»¸öÁĞ±íÀ­Á´²Ù×÷
+	// ä¸å¦ä¸€ä¸ªåˆ—è¡¨æ‹‰é“¾æ“ä½œ
 	function zip(otherList) {
 		if (size != otherList.size) {
 			return null;
@@ -421,7 +421,7 @@ class List extends Any {
 		return map;
 	}
 
-	// ±âÆ½»¯ÁĞ±í
+	// æ‰å¹³åŒ–åˆ—è¡¨
 	function flatten() {
 		local newList = List();
 		forEach(function(v) {
@@ -436,7 +436,7 @@ class List extends Any {
 		return newList;
 	}
 
-	// ÏÈÓ³Éäºó±âÆ½»¯
+	// å…ˆæ˜ å°„åæ‰å¹³åŒ–
 	function flatMap(f) {
 		return map(f).flatten();
 	}

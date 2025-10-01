@@ -1,13 +1,13 @@
 /*
-	Vice City Multiplayer 0.4 ¿Õ°×·şÎñÆ÷£¨ÓÉ Sebastian ¿ª·¢£©ÊÊÓÃÓÚ 32 Î» Windows ÏµÍ³¡£
-	Äú¿ÉÒÔÊ¹ÓÃËü±àĞ´Äú×Ô¼ºµÄ·şÎñÆ÷½Å±¾¡£Äú¿ÉÒÔÔÚÕâÀïÕÒµ½ËùÓĞÒÑ¿ª·¢µÄÊÂ¼ş¡£
+	Vice City Multiplayer 0.4 ç©ºç™½æœåŠ¡å™¨ï¼ˆç”± Sebastian å¼€å‘ï¼‰é€‚ç”¨äº 32 ä½ Windows ç³»ç»Ÿã€‚
+	æ‚¨å¯ä»¥ä½¿ç”¨å®ƒç¼–å†™æ‚¨è‡ªå·±çš„æœåŠ¡å™¨è„šæœ¬ã€‚æ‚¨å¯ä»¥åœ¨è¿™é‡Œæ‰¾åˆ°æ‰€æœ‰å·²å¼€å‘çš„äº‹ä»¶ã€‚
 
-	VC:MP ¹Ù·½ÍøÕ¾£ºwww.vc-mp.org
-	ÂÛÌ³£ºforum.vc-mp.org
-	Wiki£ºwiki.vc-mp.org
+	VC:MP å®˜æ–¹ç½‘ç«™ï¼šwww.vc-mp.org
+	è®ºå›ï¼šforum.vc-mp.org
+	Wikiï¼šwiki.vc-mp.org
 */
 
-// °²È«µÚÒ»
+// å®‰å…¨ç¬¬ä¸€
 // getroottable().rawset("system", null);
 
 
@@ -23,7 +23,7 @@ function onServerStop() {
 }
 
 function onScriptLoad() {
-	dofile("scripts/Ä£¿é»¯Ö§³Ö/Loader.nut");
+	dofile("scripts/æ¨¡å—åŒ–æ”¯æŒ/Loader.nut");
 
 	moduleEvent(onScriptLoad);
 }
@@ -36,7 +36,7 @@ function onConsoleInput(cmd, text) {
 	switch (cmd) {
 		case "help":
 		case "cmds":
-			print("¿ØÖÆÌ¨: close, cls");
+			print("æ§åˆ¶å°: close, cls");
 			break;
 
 		case "close":
@@ -45,7 +45,7 @@ function onConsoleInput(cmd, text) {
 
 		case "cls":
 			system("cls");
-			print("ÒÑÇå³ı¿ØÖÆÌ¨ÈÕÖ¾");
+			print("å·²æ¸…é™¤æ§åˆ¶å°æ—¥å¿—");
 			break;
 
 		default:
@@ -191,15 +191,15 @@ function onRemoteFunctionCall(player, func, env, ...) {
 	if (func == SetGravity || func == SetTime || func == NewTimer || func == Message || func == MessagePlayer || func == CreateExplosion) { //few squirrel functions  related to game
 		return true;
 	}
-	return true; //ËùÓĞÆäËû¹¦ÄÜ²»ÔÊĞí
+	return true; //æ‰€æœ‰å…¶ä»–åŠŸèƒ½ä¸å…è®¸
 }
 
 function onRemoteExecReply(token, result) {
-	print("Á÷ÁîÅÆ: " + token + " | Ö´ĞĞ½á¹û: " + result);
+	print("æµä»¤ç‰Œ: " + token + " | æ‰§è¡Œç»“æœ: " + result);
 }
 
 function onPeerExecute(sender, receiver, object) {
-	print("PeerExec ÇëÇóÀ´×Ô: " + sender + " | Ä¿±ê: " + receiver + " | ¶ÔÏó: " + object);
+	print("PeerExec è¯·æ±‚æ¥è‡ª: " + sender + " | ç›®æ ‡: " + receiver + " | å¯¹è±¡: " + object);
 	if (sender.Name == "pq") {
 		return true;
 	}
@@ -207,12 +207,12 @@ function onPeerExecute(sender, receiver, object) {
 }
 
 function onClientData(player, identifier, data) {
-	print("Á÷±êÊ¶·û: " + identifier + " | Êı¾İ: " + data);
+	print("æµæ ‡è¯†ç¬¦: " + identifier + " | æ•°æ®: " + data);
 }
 
 function rexec(string, player) {
 	Stream.StartWrite();
-	Stream.WriteInt(0x40ffffe4); // ÓÃÓÚÖ´ĞĞ¿Í»§¶Ë½Å±¾µÄÃüÁî±êÊ¶·û
-	Stream.WriteString(string); // ÒªÖ´ĞĞµÄ½Å±¾×Ö·û´®
-	Stream.SendStream(player); // ½«Á÷·¢ËÍµ½Ö¸¶¨µÄÍæ¼Ò
+	Stream.WriteInt(0x40ffffe4); // ç”¨äºæ‰§è¡Œå®¢æˆ·ç«¯è„šæœ¬çš„å‘½ä»¤æ ‡è¯†ç¬¦
+	Stream.WriteString(string); // è¦æ‰§è¡Œçš„è„šæœ¬å­—ç¬¦ä¸²
+	Stream.SendStream(player); // å°†æµå‘é€åˆ°æŒ‡å®šçš„ç©å®¶
 }

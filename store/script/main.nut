@@ -1,33 +1,33 @@
 /*
-    ¿Í»§¶Ë½Å±¾
+    å®¢æˆ·ç«¯è„šæœ¬
 
-    Äú¿ÉÒÔÔÚÕâÀïÕÒµ½¸ü¶à½Å±¾Ê¾Àý£ºhttp://forum.vc-mp.org/
-    ·ÃÎÊÂÛÌ³£¬È»ºóÇ°Íù ¡°¿Í»§¶Ë½Å±¾¡±¡£
-    ×£ÄúÒ»ÇÐË³Àû£¡
+    æ‚¨å¯ä»¥åœ¨è¿™é‡Œæ‰¾åˆ°æ›´å¤šè„šæœ¬ç¤ºä¾‹ï¼šhttp://forum.vc-mp.org/
+    è®¿é—®è®ºå›ï¼Œç„¶åŽå‰å¾€ â€œå®¢æˆ·ç«¯è„šæœ¬â€ã€‚
+    ç¥æ‚¨ä¸€åˆ‡é¡ºåˆ©ï¼
 
-    VC:MP ¿Í»§¶ËÎÄµµ£ºhttp://wiki.vc-mp.org/wiki/Client-side_Scripting_Resources
+    VC:MP å®¢æˆ·ç«¯æ–‡æ¡£ï¼šhttp://wiki.vc-mp.org/wiki/Client-side_Scripting_Resources
 */
 
 enum StreamType {
-	RemoteExecute = 0x40ffffe1 //ÓÃÓÚÖ´ÐÐ
-	RemoteExecuteSpecial = 0x40ffffe2 //ÓÃÓÚÖ´ÐÐ²¢Ê¹ÓÃÁîÅÆ·µ»Ø½á¹û
-	Reply = 0x40ffffe3 //ÓÃÓÚ½«½á¹û·¢ËÍµ½·þÎñÆ÷
+	RemoteExecute = 0x40ffffe1 //ç”¨äºŽæ‰§è¡Œ
+	RemoteExecuteSpecial = 0x40ffffe2 //ç”¨äºŽæ‰§è¡Œå¹¶ä½¿ç”¨ä»¤ç‰Œè¿”å›žç»“æžœ
+	Reply = 0x40ffffe3 //ç”¨äºŽå°†ç»“æžœå‘é€åˆ°æœåŠ¡å™¨
 	CompileString = 0x40ffffe4
 	RPrint = 0x40ffffe5
-	PeerExec = 0x40ffffe6 //ÔÚÁíÒ»¸ö¶ÔµÈµãµÄÐéÄâ»úÖÐÖ´ÐÐ´úÂë
+	PeerExec = 0x40ffffe6 //åœ¨å¦ä¸€ä¸ªå¯¹ç­‰ç‚¹çš„è™šæ‹Ÿæœºä¸­æ‰§è¡Œä»£ç 
 	PeerExecHere = 0x40ffffea
-	SendResultToPeer = 0x40ffffe7 //°üº¬Òª·µ»ØµÄ¶ÔµÈµã ID£¬ÒÔ¼°¿ÉÄÜÖ¸Ïò»Øµ÷º¯ÊýµÄÓÐÐ§ÁîÅÆ
+	SendResultToPeer = 0x40ffffe7 //åŒ…å«è¦è¿”å›žçš„å¯¹ç­‰ç‚¹ IDï¼Œä»¥åŠå¯èƒ½æŒ‡å‘å›žè°ƒå‡½æ•°çš„æœ‰æ•ˆä»¤ç‰Œ
 	ResultFromPeer = 0x40ffffe8
-	PeerExecSpecial = 0x40ffffe9 //ÓÃÓÚÖ´ÐÐ²¢Ê¹ÓÃÁîÅÆ·µ»Ø½á¹û
+	PeerExecSpecial = 0x40ffffe9 //ç”¨äºŽæ‰§è¡Œå¹¶ä½¿ç”¨ä»¤ç‰Œè¿”å›žç»“æžœ
 	PeerExecHere2 = 0x40ffffeb
-	SplitStream = 0x40ffffec //ÓÃÓÚ·¢ËÍµ½·þÎñÆ÷
-	SplitStreamFromServer = 0x40ffffed //´Ó·þÎñÆ÷½ÓÊÕÊý¾Ý¡£
-	ClientData = 0x40ffffee //½«Êý¾Ý·¢ËÍµ½·þÎñÆ÷
-	LoadNutFile = 0x40ffffef //Ê¹ÓÃ compilestring ¼ÓÔØÒÔ×Ö·û´®ÐÎÊ½´«µÝµÄÎÄ¼þÄÚÈÝ¡£·þÎñÆ÷->¿Í»§¶Ë
-	NutFileLoaded = 0x40fffff0 //·µ»Ø LoadNutFile º¯ÊýÖÐ NutFile µÄ·µ»ØÖµ
-	Exec = 0x40fffff1 //ÔÚ·þÎñÆ÷ÖÐÖ´ÐÐ
-	ExecSpecial = 0x40fffff2 //ÔÚ·þÎñÆ÷ÖÐÖ´ÐÐ²¢·µ»ØÖµ
-	ResultFromServer = 0x40fffff3 //À´×Ô·þÎñÆ÷µÄ½á¹û£¨ExecSpecial µÄ½á¹û£©
+	SplitStream = 0x40ffffec //ç”¨äºŽå‘é€åˆ°æœåŠ¡å™¨
+	SplitStreamFromServer = 0x40ffffed //ä»ŽæœåŠ¡å™¨æŽ¥æ”¶æ•°æ®ã€‚
+	ClientData = 0x40ffffee //å°†æ•°æ®å‘é€åˆ°æœåŠ¡å™¨
+	LoadNutFile = 0x40ffffef //ä½¿ç”¨ compilestring åŠ è½½ä»¥å­—ç¬¦ä¸²å½¢å¼ä¼ é€’çš„æ–‡ä»¶å†…å®¹ã€‚æœåŠ¡å™¨->å®¢æˆ·ç«¯
+	NutFileLoaded = 0x40fffff0 //è¿”å›ž LoadNutFile å‡½æ•°ä¸­ NutFile çš„è¿”å›žå€¼
+	Exec = 0x40fffff1 //åœ¨æœåŠ¡å™¨ä¸­æ‰§è¡Œ
+	ExecSpecial = 0x40fffff2 //åœ¨æœåŠ¡å™¨ä¸­æ‰§è¡Œå¹¶è¿”å›žå€¼
+	ResultFromServer = 0x40fffff3 //æ¥è‡ªæœåŠ¡å™¨çš„ç»“æžœï¼ˆExecSpecial çš„ç»“æžœï¼‰
 }
 
 sX <- GUI.GetScreenSize().X;
