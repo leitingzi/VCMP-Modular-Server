@@ -1,6 +1,3 @@
-nutFiles.txt
 *.log
 server_log.txt
 announce.log
-
-allnut.nut

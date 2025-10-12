@@ -23,7 +23,7 @@ function onServerStop() {
 }
 
 function onScriptLoad() {
-	dofile("scripts/模块化支持/Loader.nut");
+	dofile("scripts/ModularSupport/Loader.nut");
 
 	moduleEvent(onScriptLoad);
 }
