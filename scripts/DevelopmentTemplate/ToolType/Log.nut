@@ -8,50 +8,50 @@ class Log {
 		::hprint(cWHITE + cBOLD, "\n");
 	}
 
-	static function e(msg, title = "错误") {
+	static function e(msg, title = "Error") {
 		printTitle(cRED, title);
 		message(msg);
 
 		saveInFile("[" + title + "] " + msg);
 	}
 
-	static function w(msg, title = "警告") {
+	static function w(msg, title = "Warning") {
 		printTitle(cYELLOW, title);
 		message(msg);
 
 		saveInFile("[" + title + "] " + msg);
 	}
 
-	static function i(msg, title = "信息") {
+	static function i(msg, title = "Info") {
 		printTitle(cBLUE, title);
 		message(msg);
 
 		saveInFile("[" + title + "] " + msg);
 	}
 
-	static function s(msg, title = "成功") {
+	static function s(msg, title = "Success") {
 		printTitle(cGREEN, title);
 		message(msg);
 
 		saveInFile("[" + title + "] " + msg);
 	}
 
-	static function t(msg, title = "调试") {
+	static function t(msg, title = "Debug") {
 		printTitle(cMAGENTA, title);
 		message(msg);
 
 		saveInFile("[" + title + "] " + msg);
 	}
 
-	static function r(msg, title = "记录") {
+	static function r(msg, title = "Record") {
 		printTitle(cWHITE, title);
 		message(msg);
 
 		saveInFile("[" + title + "] " + msg);
 	}
 
-	static function a(msg, title = "操作") {
-		printTitle(cCYAN, "操作");
+	static function a(msg, title = "Operation") {
+		printTitle(cCYAN, title);
 		message(msg);
 
 		saveInFile("[" + title + "] " + msg);
@@ -72,15 +72,8 @@ class Log {
 	}
 
 	static function saveInFile(msg) {
-		local fileName = "服务器日志.txt";
+		local fileName = "ServerLog.txt";
 		local d = Date();
-		FileUtil.addLine(fileName, "[" + d.getCurrentTime() + "] -> " + msg);
+		File.addLine(fileName, "[" + d.getCurrentTime() + "] -> " + msg);
 	}
 }
-
-function Log::Print(msg) {
-	hprint(cCYAN + cBOLD, "[脚本] ");
-	hprint(cWHITE + cBOLD, msg + "\n");
-	Log.saveInFile("[脚本] " + msg);
-}
-print <- Log.Print;

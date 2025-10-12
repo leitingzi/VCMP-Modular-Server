@@ -36,7 +36,7 @@ function onConsoleInput(cmd, text) {
 	switch (cmd) {
 		case "help":
 		case "cmds":
-			print("控制台: close, cls");
+			print("Console: close, cls");
 			break;
 
 		case "close":
@@ -45,7 +45,7 @@ function onConsoleInput(cmd, text) {
 
 		case "cls":
 			system("cls");
-			print("已清除控制台日志");
+			print("Console logs have been cleared.");
 			break;
 
 		default:

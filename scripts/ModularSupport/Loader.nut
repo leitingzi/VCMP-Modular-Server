@@ -43,7 +43,7 @@ function removeModule(moduleName) {
 		moduleArray.remove(index);
 	}
 
-	print("移除模块: " + moduleName);
+	print("Remove Module: " + moduleName);
 }
 
 function injectModule(moduleName) {
@@ -55,7 +55,7 @@ function injectModule(moduleName) {
 	local script = compilestring("moduleArray.append(\"" + moduleName + "\");");
 	script();
 
-	print("注入模块: " + moduleName);
+	print("Inject Module: " + moduleName);
 }
 
 function factoryModule(moduleName) {
@@ -105,7 +105,7 @@ function FileIsExist(path) {
 }
 
 function loadNutFiles(basePath) {
-	if (basePath != "模块化支持") {
+	if (basePath != "ModularSupport") {
 		local loaderPath = "scripts/" + basePath + "/Loader.nut"
 		if (FileIsExist(loaderPath)) {
 			dofile(loaderPath);
@@ -122,7 +122,7 @@ function loadNutFiles(basePath) {
 	foreach(value in array) {
 		if (strip(value) != "") {
 			local path = getFilePath(basePath, strip(value));
-			print("加载: " + path);
+			print("Load Module: " + path);
 			try {
 				dofile(path);
 			} catch (exception) {
@@ -135,7 +135,7 @@ function loadNutFiles(basePath) {
 	// 首次加载失败的文件 会重新加载
 	foreach(value in errorPath) {
 		try {
-			print("重新加载: " + value);
+			print("Reload Module: " + value);
 			dofile(value);
 		} catch (exception) {
 			print(exception);
@@ -146,7 +146,7 @@ function loadNutFiles(basePath) {
 
 // 定义模块列表
 local myModule = [
-	"开发模板", "模块化支持"
+	"DevelopmentTemplate", "ModularSupport"
 ];
 
 // 加载模块中的nut文件，加载中首次报错是正常现象
@@ -166,7 +166,7 @@ foreach(value in injectSingles) {
 
 // 注入模块
 injectModule("A");
-print("模块A 是否存在: " + hasModule("A"));
+print("Module A is Exist: " + hasModule("A"));
 
 // 执行模块函数
 local a = get("A"); //获取注入的模块
@@ -180,7 +180,7 @@ moduleEvent(test);
 
 // 移除模块
 removeModule("A");
-print("模块A 是否存在: " + hasModule("A"));
+print("Module A is Exist: " + hasModule("A"));
 
 
 class B {

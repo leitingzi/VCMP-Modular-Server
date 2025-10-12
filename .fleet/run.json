@@ -2,8 +2,8 @@
     "configurations": [
         {
             "type": "command",
-            "name": "Run server.exe",
-            "program": "./server64.exe"
+            "name": "运行服务器",
+            "program": "$WORKSPACE_DIR$/server64.exe",
         }
     ]
 }
