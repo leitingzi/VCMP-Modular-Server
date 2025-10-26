@@ -69,18 +69,16 @@ function when(value) {
 
 local x = 65;
 local result = when(x)
-	.is(100, @()
-		"Max")
-	.inRange(0, 35, @()
-		"0~35")
-	.inRange(35, 70, @()
-		"35~70")
-	.match(@(v) v * 2 > 150 && v < 80, @()
-		"75~80")
-	.otherwise(@()
-		">80");
+	.isNull(@()"is Null")
+	.isType("float", @()"Not Float")
+	.is(100, @()"Max")
+	.inRange(0, 35, @()"0~35")
+	.inRange(35, 70, @()"35~70")
+	.match(@(v) v * 2 > 150 && v < 80, @()"75~80")
+	.otherwise(@()">80");
 
 print(result);
+
 
 local x = 65;
 local result;

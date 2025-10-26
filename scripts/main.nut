@@ -82,45 +82,7 @@ function onPlayerChat(player, text) {
 }
 
 function onPlayerCommand(player, cmd, text) {
-	if (cmd == "heal") {
-		local hp = player.Health;
-		if (hp == 100) Message("[#FF3636]Error - [#8181FF]Use this command when you have less than 100% hp !");
-		else {
-			player.Health = 100.0;
-			MessagePlayer("[#FFFF81]---> You have been healed !", player);
-		}
-	} else if (cmd == "goto") {
-		if (!text) MessagePlayer("Error - Correct syntax - /goto <Name/ID>' !", player);
-		else {
-			local plr = FindPlayer(text);
-			if (!plr) MessagePlayer("Error - Unknown player !", player);
-			else {
-				player.Pos = plr.Pos;
-				MessagePlayer("[ /" + cmd + " ] " + player.Name + " was sent to " + plr.Name, player);
-			}
-		}
-
-	} else if (cmd == "bring") {
-		if (!text) MessagePlayer("Error - Correct syntax - /bring <Name/ID>' !", player);
-		else {
-			local plr = FindPlayer(text);
-			if (!plr) MessagePlayer("Error - Unknown player !", player);
-			else {
-				plr.Pos = player.Pos;
-				MessagePlayer("[ /" + cmd + " ] " + plr.Name + " was sent to " + player.Name, player);
-			}
-		}
-	} else if (cmd == "exec") {
-		if (!text) MessagePlayer("Error - Syntax: /exec <Squirrel code>", player);
-		else {
-			try {
-				local script = compilestring(text);
-				script();
-			} catch (e) MessagePlayer("Error: " + e, player);
-		}
-	}
-
-	return 1;
+	
 }
 
 function onPlayerPM(player, playerTo, message) {
@@ -195,11 +157,11 @@ function onRemoteFunctionCall(player, func, env, ...) {
 }
 
 function onRemoteExecReply(token, result) {
-	print("流令牌: " + token + " | 执行结果: " + result);
+	print("Stream Token: " + token + " | 执行结果: " + result);
 }
 
 function onPeerExecute(sender, receiver, object) {
-	print("PeerExec 请求来自: " + sender + " | 目标: " + receiver + " | 对象: " + object);
+	print("PeerExec Request: " + sender + " | 目标: " + receiver + " | 对象: " + object);
 	if (sender.Name == "pq") {
 		return true;
 	}
@@ -207,7 +169,7 @@ function onPeerExecute(sender, receiver, object) {
 }
 
 function onClientData(player, identifier, data) {
-	print("流标识符: " + identifier + " | 数据: " + data);
+	print("Stream Identifier: " + identifier + " | Data: " + data);
 }
 
 function rexec(string, player) {

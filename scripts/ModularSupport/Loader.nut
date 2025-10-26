@@ -132,13 +132,23 @@ function loadNutFiles(basePath) {
 		}
 	}
 
+	local errorPath2 = [];
+
 	// 首次加载失败的文件 会重新加载
 	foreach(value in errorPath) {
 		try {
 			print("Reload Module: " + value);
 			dofile(value);
 		} catch (exception) {
+			errorPath2.append(value);
 			print(exception);
+		}
+	}
+
+	if(errorPath2.len() > 0) {
+		print("Load Failed: ")
+		foreach (value in errorPath2) {
+			print(value);
 		}
 	}
 }
@@ -202,3 +212,20 @@ b2.test = 5;
 
 b1.log();
 b2.log();
+
+
+class C {
+	test = 123;
+
+	function log() {
+		print(test);
+	}
+}
+injectModule("C");
+
+local c1 = get("C");
+c1.test = 100;
+c1.log();
+
+local c2 = get("C");
+c2.log();
